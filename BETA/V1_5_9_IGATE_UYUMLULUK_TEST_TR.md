@@ -1,6 +1,6 @@
 # TA1FM LoRa APRS iGate & Digipeater — V1.5.9 BETA / APRS-IS Guvenlik Incelemesi
 
-> **BETA / TEST EDILMEDI:** V1.5.8 calisan surum korunuyor. Bu kaynak kod Arduino IDE ile henuz derlenmedi, RF/APRS-IS cihaz testinden gecmedi. Test ve kod incelemesi tamamlanmadan canli APRS-IS aginda kullanmayin veya resmi TOCALL uyumlulugu iddia etmeyin.
+>
 
 ## Kaynaklar
 
