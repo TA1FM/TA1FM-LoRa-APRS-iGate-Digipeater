@@ -1259,7 +1259,7 @@ void maintainAprs(){
     size_t wrote=aprs.write(p.line,p.len);
     const uint8_t crlf[2]={'\r','\n'};
     if(wrote==p.len && aprs.write(crlf,2)==2){
-      Serial.printf("[APRS-IS] TCP gonderildi: %u byte (binary-safe)\\n",(unsigned)p.len);
+      Serial.printf("[APRS-IS] TCP gonderildi: %u byte (binary-safe)\n",(unsigned)p.len);
       queueHead=(queueHead+1)%12;queueCount--;countSent++;
     }else disconnectAprs();
   }
