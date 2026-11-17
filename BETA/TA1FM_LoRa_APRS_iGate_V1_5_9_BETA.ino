@@ -935,9 +935,17 @@ void readRadio(){
       recordRx(source,packet,rssi,snr,"RX");
       Serial.println("[APRS] "+packet);
       if(digiMode && cfg.autoDigi){
-        // Duplicate suppression belongs only to the RF digipeater path.
-        if(seenRecently(packet)){countDup++;updateRecentAction(packet,"TEKRAR");Serial.println("[DIGI] Duplicate (30 sn)");}
-        else checkDigiEligibility(packet);
+        // DIGI still constructs TX using a String. Until binary-safe RF DIGI is
+        // implemented, refuse binary info rather than transmitting a modified copy.
+        bool printableInfo=true;
+        for(size_t i=3+colonOffset+1;i<frameEnd;i++){
+          if(data[i]<32 || data[i]>126){printableInfo=false;break;}
+        }
+        if(!printableInfo){
+          countRejected++;updateRecentAction(packet,"DIGI BINARY ATLANDI");
+        }else if(seenRecently(packet)){
+          countDup++;updateRecentAction(packet,"TEKRAR");Serial.println("[DIGI] Duplicate (30 sn)");
+        }else checkDigiEligibility(packet);
       } else if(WiFi.status()==WL_CONNECTED && aprsVerified && aprs.connected()){
         // RX iGate: do not suppress duplicates; APRS-IS can use all RF reception reports.
         if(enqueueGateFrame(data,frameEnd,colonOffset,cfg.call))
