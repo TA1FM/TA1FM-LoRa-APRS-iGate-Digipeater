@@ -29,11 +29,11 @@ Use **3.3 V compatible logic** and verify power requirements for each sensor/GNS
 ## Build (Arduino IDE)
 1. Install Espressif ESP32 core **3.3.8**, select **ESP32S3 Dev Module**, flash size **4 MB**, OTA-capable partition scheme.
 2. Install RadioLib **7.8.1**, Adafruit GFX, Adafruit SSD1306, Adafruit SH110X, TinyGPSPlus, Adafruit BME280 and Adafruit Unified Sensor (including library dependencies).
-3. Copy `TA1FM_secrets.example.h` to `TA1FM_secrets.h` **in the same sketch folder as the .ino**; change both secrets to your own strong passwords.
+3. No extra secrets header is needed. The default setup/admin passwords are `1234567890`; change them using the web panel immediately after first setup.
 4. Open `TA1FM_LoRa_APRS_iGate_v2.0.0-beta.1.ino` in its Arduino sketch folder and compile.
 5. Keep the previously tested firmware available for rollback. Test with RF functions disabled initially.
 
-**Do not upload the placeholder credentials from the example header** and do not expose the administration interface to the public internet. APRS-IS passcodes and Wi-Fi credentials contained in JSON exports are plain text: keep backups private.
+**Security:** The published default password (`1234567890`) is known to everyone. Change it on first setup and do not expose the administration interface to the public internet. APRS-IS passcodes and Wi-Fi credentials contained in JSON exports are plain text: keep backups private.
 
 ## Important limitations
 - The source is provided for ongoing testing. No independent CI/Arduino compile or hardware verification has been performed for this GitHub publication.
