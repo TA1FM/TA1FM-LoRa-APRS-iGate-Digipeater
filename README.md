@@ -5,6 +5,21 @@
 Heltec Wireless Stick Lite V3 cihazınıza Chrome veya Edge üzerinden USB ile firmware yükleyebilirsiniz.
 
 Install firmware directly from your browser using Chrome or Edge. Supported hardware: Heltec Wireless Stick Lite V3 only.
+
+### 📡 V2.0.0 BETA 1 (DEV7.2) — İlk kurulum ve OTA güncelleme
+
+**İlk kurulum:** [TA1FM Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) sayfasında `V2.0.0 BETA 1 (DEV7.2)` sürümünü seçin. USB üzerinden ilk yüklemede `_merged.bin` kullanılır.
+
+**Sonraki güncellemeler:** İlk kurulumdan sonra cihazın web panelinden **Sistem → OTA Firmware Güncelle** bölümünü açın (doğrudan `http://CIHAZ_IP/ota`). Aşağıdaki normal uygulama `.bin` dosyasını indirip OTA panelinden yükleyebilirsiniz:
+
+**[⬇️ V2.0.0 BETA 1 — OTA firmware (.bin) indir](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/raw/refs/heads/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1/TA1FM_LoRa_APRS_iGate_v2.0.0-beta.1.bin)**
+
+**⚠️ Dikkat:** OTA bölümüne `_merged.bin` yüklemeyin. Güncelleme öncesi ayarlarınızı yedekleyin; OTA için mevcut firmware ve bölümleme düzeninin OTA desteklemesi gerekir. **V2.0.0 BETA 1 hâlâ test sürümüdür.**
+
+**English:** Use the Web Flasher and merged image for first-time USB installation. For later updates, open **System → OTA Firmware Update** on the device, download the [OTA application binary](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/raw/refs/heads/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1/TA1FM_LoRa_APRS_iGate_v2.0.0-beta.1.bin) and upload it there. Do not upload `_merged.bin` using OTA.
+
+[📁 BETA kaynak kodu, README ve diğer dosyalar](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1)
+
 # TA1FM LoRa APRS iGate & Digipeater
 
 ## 📸 TA1FM LoRa APRS iGate
