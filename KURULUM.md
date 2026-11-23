@@ -42,7 +42,7 @@ Telefon veya bilgisayarla bu ağa bağlanıp tarayıcıdan paneli açın.
 ## 4. Yönetici Girişi
 
 - Kullanıcı adı: `admin`
-- Varsayılan yönetici şifresi: `123456789`
+- Varsayılan yönetici şifresi: `1234567890`
 
 Yönetici şifresi bu sürümün kaynak kodunda tanımlıdır. Şifreyi değiştirmek için kaynak kodu düzenleyip yeniden derlemek gerekir.
 
