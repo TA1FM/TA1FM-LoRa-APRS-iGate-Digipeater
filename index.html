@@ -19,13 +19,13 @@ fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px
 <div class="eyebrow">TA1FM · OPEN SOURCE · WEB FLASHER</div>
 <h1>LoRa APRS iGate &amp; Digi<br>Web Installer</h1>
 <p class="lead">Heltec Wireless Stick Lite V3 cihazınıza TA1FM firmware yazılımını Chrome veya Edge üzerinden USB bağlantısıyla yükleyin. Arduino IDE gerekmez.</p>
-<span class="tag">V1.5.8 / V1.5.7.1 · ESP32-S3 + SX1262</span><p class="muted" style="font-size:.92rem">V2.0.0 BETA 1 (DEV7.2) kaynak sürümü duyuruldu; Web Flasher yüklemesi doğru firmware paketi hazırlanıp doğrulandığında açılacaktır.</p>
+<span class="tag">V1.5.8 / V1.5.7.1 · ESP32-S3 + SX1262</span><p class="muted" style="font-size:.92rem">V2.0.0 BETA 1 (DEV7.2) Web Flasher üzerinden yüklenebilir. Test sürümüdür; mevcut çalışan yazılımınızı ve ayarlarınızı önceden yedekleyin.</p>
 <section class="panel" aria-labelledby="install-title">
 <h2 id="install-title">Firmware yükleme / Install firmware</h2>
 <fieldset><legend>Yüklenecek sürümü seçin / Select version</legend>
 <label class="option"><input type="radio" name="firmware" value="v1.5.8" checked><strong>V1.5.8 — Güncel sürüm / Latest</strong><small>SSD1306 / SH1106, pil ölçümü ve kalibrasyon, OLED uyku, güvenlik ayarları.</small></label>
 <label class="option"><input type="radio" name="firmware" value="v1.5.7.1"><strong>V1.5.7.1 — Önceki sürüm / Previous</strong><small>İlk yayımlanan kararlı saha testi; eski sürüme dönüş için.</small></label>
-<label class="option option-unavailable"><input type="radio" name="firmware" value="v2.0.0-beta.1" disabled aria-disabled="true"><strong>V2.0.0 BETA 1 (DEV7.2) — Test sürümü / Testing</strong><small>GPS Tracker, SmartBeaconing, APRS mesajlaşma, telemetri ve yeni Sistem paneli. <strong>Web yükleme henüz aktif değil:</strong> doğrulanmış merged.bin bekleniyor. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1" target="_blank" rel="noopener">BETA kaynak kodu</a></small></label>
+<label class="option"><input type="radio" name="firmware" value="v2.0.0-beta.1"><strong>V2.0.0 BETA 1 (DEV7.2) — Test sürümü / Testing</strong><small>GPS Tracker, SmartBeaconing, APRS mesajlaşma, telemetri ve yeni Sistem paneli. <strong>⚠ BETA:</strong> uzun süreli saha testleri tamamlanmadı; kurmadan önce ayarlarınızı yedekleyin. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1" target="_blank" rel="noopener">BETA kaynak kodu</a></small></label>
 </fieldset>
 <p class="selected" id="selected-version" aria-live="polite">Seçilen / Selected: V1.5.8</p>
 <ol><li>Heltec Wireless Stick Lite V3 kartına uygun anteni bağlayın ve USB veri kablosunu takın.</li><li>Sürümü seçip <strong>INSTALL FIRMWARE</strong> butonuna basın.</li><li>Doğru COM portunu seçin ve yüklemeyi onaylayın.</li><li>İşlem tamamlanınca cihazı yeniden başlatın.</li></ol>
@@ -45,7 +45,7 @@ fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px
 <script>
 const installer=document.getElementById('installer');
 const label=document.getElementById('selected-version');
-const manifests={'v1.5.8':'./manifest-v1.5.8.json','v1.5.7.1':'./manifest-v1.5.7.1.json'};
+const manifests={'v1.5.8':'./manifest-v1.5.8.json','v1.5.7.1':'./manifest-v1.5.7.1.json','v2.0.0-beta.1':'./manifest-v2.0.0-beta.1.json'};
 for(const input of document.querySelectorAll('input[name="firmware"]')){
   input.addEventListener('change',()=>{
     if(!input.checked)return;
