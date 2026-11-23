@@ -13,7 +13,7 @@
 - New system view with profiles, security, OTA quick access, status, and separate backup tab
 - Expanded JSON backup/restore for newer preferences
 - Restored alignment of System page card columns (DEV7.2)
-- GitHub packaging moves default secrets to an untracked local header
+- GitHub beta uses the original single-file sketch with published default setup passwords, configurable via web panel
 
 ### Validation
 - User reported successful compilation/device use for DEV7.2 and positive messaging/bridge tests.
