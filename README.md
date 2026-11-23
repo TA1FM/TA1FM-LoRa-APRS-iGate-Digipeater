@@ -43,6 +43,10 @@ TA1FM LoRa APRS iGate & Digi, amatör telsizciler için geliştirilmiş, LoRa ü
 İlk sürüm Heltec Wireless Stick Lite V3 (ESP32-S3 / SX1262) donanımında geliştirilmiş ve test edilmiştir.
 
 ### Özellikler
+- Tracker Aprs-is & RF (v2.0.0)
+- Aprs mesaj Gönderme/Alma (v2.0.0)
+- WX telemetri gönderimi (v2.0.0)
+- Yeni Gelişmiş WebPanel Arayüzü (v2.0.0)
 - 433.775 MHz LoRa APRS, SF12, BW125
 - APRS-IS bağlantısı ve konum beacon gönderimi
 - Otomatik RF Digipeater modu
