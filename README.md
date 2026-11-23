@@ -115,7 +115,7 @@ Support for additional ESP32 LoRa boards is planned.
 ## Web Kontrol Paneli / Web Control Panel
 
 ![TA1FM Web Panel](images/webpanel1.png)
-![Ayarlar -( Settings )](SETTINGS.jpg)
+![mesajlar -( messages )](images/webpanel2.png)
 ![TA1FM OLED Bağlantı Şeması](TA1FM-OLED-Baglanti-V3.png)
 📘 [Türkçe Kurulum Rehberi](KURULUM.md)
 📘 [Arduino IDE Derleme Rehberi](DERLEME.md)
