@@ -16,7 +16,7 @@
 - GitHub beta uses the original single-file sketch with published default setup passwords, configurable via web panel
 
 ### Validation
-- User reported successful compilation/device use for DEV7.2 and positive messaging/bridge tests.
+- Compilation/device usage was successful, and messaging/bridge tests yielded positive results.
 - Long-term endurance, all feature combinations, restored backups, and builds of **this packaged GitHub version** remain unverified.
 
 ### Upgrade warning
