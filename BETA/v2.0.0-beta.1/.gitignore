@@ -1,0 +1,5 @@
+TA1FM_secrets.h
+**/TA1FM_secrets.h
+*.local.h
+*.ino.bin
+*.merged.bin
