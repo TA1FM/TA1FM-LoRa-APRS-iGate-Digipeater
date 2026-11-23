@@ -8,14 +8,17 @@
 
 **Önemli:** Bu yazılım sürümü yalnızca Heltec Wireless Stick Lite V3 için hazırlanmıştır.
 
-### OLED Bağlantı Tablosu
+### OLED GPS BME SENSOR Bağlantı Tablosu
 
-| SSD1306 OLED | Heltec Wireless Stick Lite V3 |
+## Pinout (Heltec Wireless Stick Lite V3)
+| Peripheral | ESP32-S3 |
 |---|---|
-| VCC | 3.3V |
-| GND | GND |
-| SDA | GPIO41 |
-| SCL | GPIO42 |
+| SX1262 SCK/MISO/MOSI/CS | 9 / 11 / 10 / 8 |
+| SX1262 RST/DIO1/BUSY | 12 / 14 / 13 |
+| OLED/BME280 SDA/SCL (Wire1) | 41 / 42 |
+| GPS TX -> ESP32 RX | GPIO47 |
+| GPS RX <- ESP32 TX | GPIO48 |
+| GPS UART baud | 9600 |
 
 ### Bağlantı Şeması
 
