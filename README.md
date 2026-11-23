@@ -20,7 +20,7 @@ Install firmware directly from your browser using Chrome or Edge. Supported hard
 
 [📁 BETA kaynak kodu, README ve diğer dosyalar](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1)
 
-# TA1FM LoRa APRS iGate & Digipeater
+# TA1FM LoRa APRS iGate & Digipeater & tracker & Mesages & WX
 
 ## 📸 TA1FM LoRa APRS iGate
 
