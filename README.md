@@ -6,7 +6,7 @@ Heltec Wireless Stick Lite V3 cihazınıza Chrome veya Edge üzerinden USB ile f
 
 Install firmware directly from your browser using Chrome or Edge. Supported hardware: Heltec Wireless Stick Lite V3 only.
 
-### 📡 V2.0.0 BETA 1 (DEV7.2) — İlk kurulum ve OTA güncelleme
+### 📡 V2.0.0 BETA 1 (DEV7.2) ( Tracker & Mesajlaşma & WX - Özellikleri Eklendi)  — İlk kurulum ve OTA güncelleme
 
 **İlk kurulum:** [TA1FM Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) sayfasında `V2.0.0 BETA 1 (DEV7.2)` sürümünü seçin. USB üzerinden ilk yüklemede `_merged.bin` kullanılır.
 
