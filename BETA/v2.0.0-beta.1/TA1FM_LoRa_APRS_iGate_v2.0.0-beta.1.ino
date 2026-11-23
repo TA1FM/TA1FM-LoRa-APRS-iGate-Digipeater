@@ -27,13 +27,12 @@
 
 // === EDIT THESE TWO BEFORE FIRST UPLOAD ===
 // 8+ characters, change them for your own device.
-// Copy TA1FM_secrets.example.h to TA1FM_secrets.h before compiling.
-#include "TA1FM_secrets.h"
-static const char* DEFAULT_AP_PASSWORD = TA1FM_AP_PASSWORD;
+// Default setup password; change it in the web panel after first login.
+static const char* DEFAULT_AP_PASSWORD = "1234567890";
 // Experimental TOCALL: NOT a registered device identity.
 // Replace only after an identifier is formally allocated.
 static const char* OWN_TOCALL = "APZTFM";
-static const char* PANEL_PASSWORD = TA1FM_PANEL_PASSWORD;
+static const char* PANEL_PASSWORD = "1234567890";
 static const char* PANEL_USER = "admin";
 
 static constexpr int PIN_SCK=9, PIN_MISO=11, PIN_MOSI=10, PIN_CS=8;
