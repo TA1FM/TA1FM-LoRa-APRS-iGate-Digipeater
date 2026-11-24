@@ -1,108 +1,73 @@
-## 🌐 Web Installer / Tarayıcıdan Kurulum
+# TA1FM MultiBoard — Arduino IDE Derleme Rehberi
 
-[🚀 TA1FM Web Installer — Firmware Yükle](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/)
+**Son güncelleme: 25 Kasım 2026.** Bu rehber kartlara özel son çalışan firmware sürümleri içindir.
 
-Heltec Wireless Stick Lite V3 cihazınıza Chrome veya Edge üzerinden USB ile firmware yükleyebilirsiniz.
+[🚀 Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) kullanıldığında **Arduino IDE ile derleme gerekmez**. Aşağıdaki adımlar kaynak koddan derlemek isteyenler içindir.
 
-Install firmware directly from your browser using Chrome or Edge. Supported hardware: Heltec Wireless Stick Lite V3 only.
-# TA1FM LoRa APRS iGate & Digi — Arduino IDE Derleme Rehberi
+## 1. Kart seçimi
 
-## 1. Desteklenen Donanım
+| Firmware | Arduino IDE Board | İşlemci | Radyo |
+|---|---|---|---|
+| [Heltec V2.0.0 DEV8](heltec/WSL_V3/DEV8/) | **ESP32S3 Dev Module** | ESP32-S3 | SX1262 |
+| [LILYGO T-Beam V1.2 DEV9.4](lilygo/TBeam_V1.2_SX127X/) | **ESP32 Dev Module** | ESP32 | SX127X (test edilen SX1278) |
+| [ESP32 DIY NoLoRa DEV8.3](esp32diy/Esp32_NoLora/) | **ESP32 Dev Module** | ESP32 | Yok |
 
-**Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262)**
+**ESP32 ile ESP32-S3 için derlemeler farklıdır.** Birinin BIN dosyasını diğerine yüklemeyin. Referans derlemelerde flash boyutu **4 MB**; OTA gereken yapılandırmalarda **OTA bölümü içeren** partition düzeni kullanılmalıdır. Önceki başarılı derlemedeki flash ve partition ayarlarına bağlı kalın.
 
-Bu yazılımın V1.5.7.1 sürümü yalnızca bu donanım için hazırlanmıştır. Harici SSD1306 OLED ekran kullanılır.
+## 2. Gerekli yazılımlar ve kütüphaneler
 
-## 2. Gerekli Yazılımlar
+Geliştirmede kullanılan ortam:
 
-- Arduino IDE 2.x
-- Espressif ESP32 Arduino Core — test edilen sürüm: **3.3.8**
-- RadioLib — test edilen sürüm: **7.8.1**
-- Adafruit SSD1306
-- Adafruit GFX Library
+- **Arduino IDE 2.3.8**
+- **Espressif ESP32 Arduino Core 3.3.8**
+- **RadioLib 7.8.1**
+- **Adafruit GFX, Adafruit SSD1306, Adafruit SH110X**
+- **TinyGPSPlus**
+- **Adafruit BME280 Library** ve **Adafruit Unified Sensor**
+- **XPowersLib 0.3.3** — AXP2101'li T-Beam sürümü için
+- ESP32 çekirdeğinin **SPI, Wire, WiFi, WebServer, Preferences ve Update** kütüphaneleri
 
-Gerekli bağımlılıklar Arduino IDE Kütüphane Yöneticisi üzerinden kurulabilir.
+Sürüm değişiklikleri derleme veya kart davranışını etkileyebilir.
 
-WiFi, WebServer, Preferences, Update, SPI ve Wire kütüphaneleri ESP32 Arduino ortamıyla birlikte sağlanır.
+## 3. Kaynak kod düzeni / önemli eksiklik
 
-## 3. Arduino IDE Kart Ayarları
+- **Heltec DEV8** kaynak kodu [kart klasöründe](heltec/WSL_V3/DEV8/) bağımsız `.ino` olarak yer alır.
+- **T-Beam DEV9.4** ve **DIY NoLoRa DEV8.3** sürümlerinin kaynak kodları `#include "board_config.h"` kullanır.
+- Bu MultiBoard kaynakları için **`board_config.h`** ve **`variants/boards/`, `variants/radios/`** altındaki ilgili `.h` dosyaları gerekir.
+- **Bu yardımcı .h dosyaları GitHub'daki kart firmware klasörlerine henüz yüklenmedi.** Bu nedenle yalnızca GitHub'daki `.ino` dosyasını kopyalamak bu iki kartta derleme için yeterli olmayabilir.
+- Eski çalışan kaynak klasörünüzdeki **eşleşen `.h` dosyalarını** aynı Arduino sketch dizininde saklayın. Farklı sürümlerin `.h` dosyalarını rastgele karıştırmayın.
+- Gelecekte tek ana yazılım ve seçimle çoklu kart desteği hedeflenmektedir; tüm kartlarda tam otomatik algılama doğrulanmış değildir.
 
-**Tools → Board:** ESP32S3 Dev Module
+## 4. Derleme ve yükleme
 
-| Ayar | Değer |
+1. Doğru kartın kaynak kodunu ve gerekiyorsa **aynı paket içindeki** yardımcı `.h` dosyalarını seçin.
+2. Arduino IDE'de `.ino` dosyasını açın.
+3. **Tools → Board** altından tablodaki işlemci kartını seçin.
+4. Flash boyutunu **4 MB**, partition düzenini kullandığınız test edilmiş derlemeye uygun şekilde belirleyin.
+5. Gerekli kütüphaneleri kurun. T-Beam için **XPowersLib**'i unutmayın.
+6. **Verify / Derle** işlemini yapın; hata varsa ilk hata satırını inceleyin.
+7. Doğru COM portu üzerinden karta yükleyin.
+8. Seri Monitör: **115200 baud**. Başlangıçta LoRa, OLED, GPS, Wi-Fi ve web sunucusu kayıtlarını kontrol edin.
+
+T-Beam SX127X için RadioLib 7.8.1 ile kesme callback tanımı gerektiğinde `radio.setDio0Action(onRadioRx, RISING);` şeklindedir.
+
+## 5. Derlenmiş BIN dosyaları
+
+Arduino IDE'nin **Sketch → Export Compiled Binary** menüsünden `.ino.bin`, `.ino.merged.bin`, `.ino.bootloader.bin`, `.ino.partitions.bin` dosyaları üretilebilir.
+
+| Dosya | Kullanım |
 |---|---|
-| Board | ESP32S3 Dev Module |
-| Flash Size | 4MB |
-| Partition Scheme | Default 4MB with SPIFFS |
-| Upload Port | Kartın bağlı olduğu COM portu |
+| Uygulama `.bin` | Uyumlu OTA panelinden güncelleme |
+| `.merged.bin` | USB ile tam kurulum; Web Flasher bunu **0x0** adresinden kullanır |
+| `.bootloader.bin` ve `.partitions.bin` | Ayrı parçalı yükleme, adreslerin ayrıca doğrulanması gerekir |
+| `.elf` | Hata ayıklama, cihaz yüklemesi veya Web Flasher için gerekmez |
 
-OTA desteği için OTA bölümleri içeren bir bölümleme düzeni kullanılmalıdır.
+**`merged.bin` OTA'ya yüklenmez.** Kartlar arasında firmware dosyalarını karıştırmayın.
 
-## 4. Kaynak Kodun Açılması
+## 6. Kaynak ve lisans
 
-1. GitHub üzerinden kaynak kodu indirin.
-2. `TA1FM_LoRa_APRS_iGate_V1_5_7_1.ino` dosyasını Arduino IDE'de açın.
-3. Kütüphanelerin kurulu olduğunu kontrol edin.
-4. Gerekiyorsa kendi yönetici şifrenizi kaynak kodda değiştirin.
-5. **Verify / Derle** düğmesine basın.
-6. Derleme başarılı olursa **Upload / Yükle** ile karta aktarın.
+[GitHub ana sayfa](README.md) · [Donanım bağlantıları](DONANIM_BAGLANTILARI.md) · [Türkçe kullanım](KURULUM.md)
 
-## 5. Hazır BIN Dosyası Oluşturma
+GPL-3.0 — depo içindeki [LICENSE](LICENSE) geçerlidir.
 
-Arduino IDE menüsünden:
-
-**Sketch → Export Compiled Binary**
-
-Bu işlem sonunda aşağıdaki dosyalar oluşturulabilir:
-
-- `.ino.bin` — OTA güncellemesi için uygulama dosyası
-- `.ino.merged.bin` — USB üzerinden ilk yükleme için birleşik firmware
-- `.ino.bootloader.bin` — Bootloader
-- `.ino.partitions.bin` — Bölümleme tablosu
-
-Hazır dosyalar ayrıca GitHub Releases bölümünde yayımlanmaktadır.
-
-## 6. LoRa ve OLED Bağlantıları
-
-Yazılımın kullandığı LoRa SX1262 pinleri:
-
-| SX1262 | ESP32-S3 GPIO |
-|---|---|
-| SCK | 9 |
-| MISO | 11 |
-| MOSI | 10 |
-| NSS / CS | 8 |
-| RESET | 12 |
-| DIO1 | 14 |
-| BUSY | 13 |
-
-Harici SSD1306 OLED bağlantısı:
-
-| OLED | ESP32-S3 GPIO |
-|---|---|
-| SDA | 41 |
-| SCL | 42 |
-
-**Önemli:** Bu pinler yazılımın ilgili kart için yapılandırıldığı bağlantılardır. Kartın donanım şemasına göre bağlantı yapın.
-
-## 7. Güvenlik ve Kullanım
-
-Yazılımı kendi cihazınız için derlerken yönetici şifresini değiştirin.
-
-APRS çağrı işaretinizi, APRS-IS bilgilerinizi ve istasyon koordinatlarınızı doğru yapılandırın.
-
-RF yayını yapmadan önce anten bağlantısını kontrol edin ve geçerli amatör telsiz mevzuatına uyun.
-
-## 8. Kaynak Kod ve Lisans
-
-Proje GNU GPL v3.0 lisansıyla yayımlanmıştır.
-
-Orijinal LoRa APRS iGate projesi ve donanım yapılandırmaları için Ricardo Guzman'a teşekkür ederiz.
-
-https://github.com/richonguzman/LoRa_APRS_iGate
-
----
-
-**TA1FM LoRa APRS iGate & Digi**
-
-73 de TA1FM!
+**73 de TA1FM!** 📡
