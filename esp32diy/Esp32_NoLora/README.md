@@ -6,7 +6,7 @@ Bu klasör, **ESP32 DevKit 30-pin / LoRa modülü olmayan** TA1FM Wi-Fi APRS-IS 
 - LoRa: **YOK** — radyo üzerinden gönderim/alım yapılmaz
 - GPS UART: RX GPIO16, TX GPIO17
 - OLED I²C: SDA GPIO21, SCL GPIO22
-- Referans: **DEV8.3 BOOT DIAG TEST** (Wi-Fi / web panel açılışı test edildi; uzun süreli STABLE onayı yok)
+- Durum: **DEV8.3 STABLE — kullanıcı tarafından 25 Kasım 2026'da kararlı çalıştığı doğrulandı.** Bu sürüm **LoRa modülsüz** DIY kart içindir.
 
 ## Firmware dosyaları
 
@@ -23,3 +23,11 @@ Aşağıdaki firmware dosyaları GitHub klasörüne yüklenmiştir:
 **Dikkat:** `merged.bin` OTA üzerinden yüklenmez. Flash adresleri ve bölüm düzeni dosyalar doğrulanmadan varsayılmamalıdır.
 
 LoRa modülü takılı ESP32 DIY sürümleri ileride ayrı `esp32diy/Esp32_LoRa/` klasörüne konacaktır. Bu klasörde yalnızca No LoRa dosyaları tutulur.
+
+## Kaynak koddan derleme notu
+
+Bu MultiBoard `.ino` kaynağı `board_config.h` ve kart/radyo `variants/` başlık dosyalarını gerektirir. Bu yardımcı `.h` dosyaları henüz GitHub klasörüne yüklenmedi; dolayısıyla `.ino` tek başına yeniden derlenebilir tam paket değildir.
+
+## Belgeler
+
+[Türkçe kurulum ve kullanım](../../KURULUM.md) · [Derleme](../../DERLEME.md) · [Donanım bağlantıları](../../DONANIM_BAGLANTILARI.md) · [STABLE sürüm notu](../../RELEASE_NOTES/esp32diy-nolora-dev83-stable.md)
