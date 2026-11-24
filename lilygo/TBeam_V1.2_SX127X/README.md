@@ -30,7 +30,7 @@ Bu klasör, `esp32diy/Esp32_NoLora/` dosyalarından ayrıdır.
 
 ## Kaynak koddan derleme notu
 
-MultiBoard `.ino` dosyası `board_config.h` ve `variants/` yardımcı `.h` dosyalarını kullanır. Bu yardımcı dosyalar burada henüz yer almadığından hazır firmware indirmek mümkündür ancak `.ino` dosyası **tek başına eksiksiz bir derleme paketi değildir**.
+**`board_config.h` ve `variants/boards/`, `variants/radios/` yardımcı başlık dosyaları artık bu klasördedir.** Kaynak koddan derlemek için `.ino` ile birlikte tüm klasör yapısını indirin. `board_config.h` içinde T-Beam SX1278 profilinin seçili olduğunu kontrol edin; yalnız `.ino` dosyasını indirmek yeterli değildir.
 
 ## Belgeler
 
