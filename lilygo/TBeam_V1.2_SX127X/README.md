@@ -14,7 +14,7 @@ Bu klasör TA1FM **iGate / Digipeater / Tracker** yazılımının LILYGO T-Beam 
 
 ## Firmware dosyaları
 
-Aşağıdaki dosyalar bilgisayardaki derleme çıktılarının adlarıdır. **GitHub'a henüz yüklenmediler**; klasöre ayrıca eklenecekler.
+Aşağıdaki kaynak kodu ve derlenmiş firmware dosyaları GitHub'a yüklenmiştir.
 
 | Dosya | Kullanım |
 |---|---|
