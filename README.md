@@ -1,123 +1,85 @@
-## 🌐 Web Installer / Tarayıcıdan Kurulum
+# TA1FM LoRa APRS iGate · Digipeater · Tracker
 
-[🚀 TA1FM Web Installer — Firmware Yükle](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/)
+**TA1FM** amatör telsiz APRS uygulaması, farklı ESP32 kartlarında LoRa APRS iGate, RF Digipeater, GPS Tracker ve **LoRa modülü olmayan kartlarda Wi-Fi üzerinden APRS-IS Tracker** işlevlerini destekleyen bir yazılım ailesidir. Proje, Heltec Wireless Stick Lite V3 üzerinde başlamış, LILYGO T-Beam V1.2 SX127X ve ESP32 DIY NoLoRa kartlarına genişletilmiştir.
 
-Heltec Wireless Stick Lite V3 cihazınıza Chrome veya Edge üzerinden USB ile firmware yükleyebilirsiniz.
+[🚀 **Web Flasher — USB ile firmware yükle**](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) · [📦 Firmware dosyaları](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater) · [🏷️ Releases](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/releases)
 
-Install firmware directly from your browser using Chrome or Edge. Supported hardware: Heltec Wireless Stick Lite V3 only.
+> **Güncelleme — 25 Kasım 2026:** Aşağıdaki üç kartın belirtilen firmware sürümleri kullanıcı tarafından çalışır ve kararlı olarak doğrulanmıştır. Bu doğrulama **yalnızca test edilen kart ve donanım yapılandırmaları** içindir; aynı işlemciyi kullanan her kartın otomatik desteklendiği anlamına gelmez.
 
-### 📡 V2.0.0 BETA 1 (DEV7.2) ( Tracker & Mesajlaşma & WX - Eklendi) — İlk kurulum ve OTA güncelleme
+## Desteklenen kartlar ve son çalışan sürümler
 
-**İlk kurulum:** [TA1FM Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) sayfasında `V2.0.0 BETA 1 (DEV7.2)` sürümünü seçin. USB üzerinden ilk yüklemede `_merged.bin` kullanılır.
+| Kart | Donanım | Doğrulanan sürüm | Firmware klasörü |
+|---|---|---|---|
+| **Heltec Wireless Stick Lite V3** | ESP32-S3 + SX1262 | **V2.0.0 DEV8 — STABLE** | [heltec/WSL_V3/DEV8](heltec/WSL_V3/DEV8/) |
+| **LILYGO T-Beam V1.2 SX127X** | ESP32 + SX127X (test cihazı SX1278), AXP2101 | **DEV9.4 — STABLE** | [lilygo/TBeam_V1.2_SX127X](lilygo/TBeam_V1.2_SX127X/) |
+| **ESP32 DIY / NoLoRa** | ESP32 WROOM DevKit 30 pin, **LoRa yok** | **DEV8.3 — STABLE** | [esp32diy/Esp32_NoLora](esp32diy/Esp32_NoLora/) |
 
-**Sonraki güncellemeler:** İlk kurulumdan sonra cihazın web panelinden **Sistem → OTA Firmware Güncelle** bölümünü açın (doğrudan `http://CIHAZ_IP/ota`). Aşağıdaki normal uygulama `.bin` dosyasını indirip OTA panelinden yükleyebilirsiniz:
+**Önemli:** Her kartın **kendine ait firmware dosyasını** seçin. Heltec'in ESP32-S3 firmware'i klasik ESP32 kartlara; T-Beam'in SX127X firmware'i SX126x T-Beam kartlara yüklenmemelidir.
 
-**[⬇️ V2.0.0 BETA 1 — OTA firmware (.bin) indir](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/raw/refs/heads/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1/TA1FM_LoRa_APRS_iGate_v2.0.0-beta.1.bin)**
+## Yeni nesil özellikler
 
-**⚠️ Dikkat:** OTA bölümüne `_merged.bin` yüklemeyin. Güncelleme öncesi ayarlarınızı yedekleyin; OTA için mevcut firmware ve bölümleme düzeninin OTA desteklemesi gerekir. **V2.0.0 BETA 1 hâlâ test sürümüdür.**
+- **LoRa APRS iGate:** RF üzerinden alınan APRS paketlerini APRS-IS ağına aktarma.
+- **RF Digipeater:** Yapılandırmaya bağlı APRS paket tekrarlama ve internet yokken yedek çalışma.
+- **GPS Tracker:** Sabit periyot veya **SmartBeaconing**; kartın yeteneklerine göre LoRa RF, APRS-IS veya her iki kanaldan konum gönderimi.
+- **APRS mesajlaşma:** Mesaj gönderme/alma, ACK takibi ve ilgili kanal ayarları.
+- **Gelişmiş web paneli:** Ana durum, iGate/Digi, Tracker, Mesajlar, Telemetri, Wi-Fi, Sistem ve Yedekleme bölümleri.
+- **APRS telemetri:** Desteklenen ölçüm kaynaklarından veri; bulunmayan sensörün değerini üretmeme.
+- **OLED:** Desteklenen SSD1306/SH1106 ekran seçenekleri; Heltec DEV8'de sayfalar arası geçiş ve PRG tuşuyla AP kontrolü.
+- **OTA firmware güncelleme**, ayar yedekleme/geri yükleme ve kayıtlı Wi-Fi bağlantılarının yönetimi.
+- **Kart bazlı pil bilgisi:** Heltec ADC, T-Beam AXP2101; harici ölçüm devresi bulunmayan ESP32 DIY için voltaj yoksa **N/A**.
 
-**English:** Use the Web Flasher and merged image for first-time USB installation. For later updates, open **System → OTA Firmware Update** on the device, download the [OTA application binary](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/raw/refs/heads/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1/TA1FM_LoRa_APRS_iGate_v2.0.0-beta.1.bin) and upload it there. Do not upload `_merged.bin` using OTA.
+**NoLoRa farkı:** ESP32 DIY NoLoRa sürümünde **LoRa RF TX/RX, RF iGate ve RF Digi yoktur**. GPS/Wi-Fi üzerinden APRS-IS Tracker, web panel ve desteklenen ekran özellikleri kullanılır.
 
-[📁 BETA kaynak kodu, README ve diğer dosyalar](https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1)
+**LoRa yapılandırması:** Türkiye'deki 433.775 MHz APRS kullanımı için projede SF12, BW125 kHz, CR 4/5 ayarları esas alınır. Doğru anten ve geçerli amatör telsiz yetkisi gereklidir. RF gücü kartın çıkış katına ve mevzuata uygun tutulmalıdır.
 
-# LoRa APRS iGate & Digipeater & Tracker & Mesages & WX
+## Web Flasher ile USB kurulumu
 
-## 📸 TA1FM LoRa APRS iGate
+[**TA1FM Web Flasher'a git**](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/)
 
-<p align="center">
-  <img src="images/ta1fm-igate-oled.jpg" width="320" alt="TA1FM LoRa APRS iGate OLED">
-</p>
+1. Chrome veya Edge ile Web Flasher'ı açın.
+2. **Açılır menüden kartın tam modelini ve sürümünü** seçin.
+3. Uygun USB veri kablosunu bağlayın. LoRa kullanan kartta doğru anten takılı olsun.
+4. **INSTALL FIRMWARE** düğmesiyle COM portunu ve yüklemeyi onaylayın.
+5. İlk açılışta Wi-Fi/APRS ayarlarını yapılandırın.
 
-**TA1FM-10 — 433.775 MHz LoRa APRS iGate**
+Web Flasher, seçilen kart için ilgili **`merged.bin`** görüntüsünü **0x0** ofsetiyle yükler. Mevcut ayarlar silinebilir; yüklemeden önce yedek alın. **`merged.bin` dosyasını OTA paneline vermeyin.** OTA için aynı kartın uygun bölümleme düzeniyle üretilmiş **uygulama `.bin`** dosyası kullanılır.
 
+## İlk kurulum ve web paneli
 
-**ESP32-S3 tabanlı LoRa APRS Internet Gateway ve Digipeater yazılımı**
+Kaydedilmiş Wi-Fi yoksa kurulum AP'si oluşturulur:
 
-**English:** ESP32-S3 based LoRa APRS Internet Gateway and Digipeater firmware.
+| Alan | Varsayılan |
+|---|---|
+| Wi-Fi adı | `TA1FM-APRS-SETUP` |
+| AP parolası | `1234567890` |
+| Kurulum IP | `http://192.168.4.1` |
+| Panel kullanıcısı | `admin` |
+| Panel parolası | Bu üç kaynak sürümde `1234567890` (yükleyeceğiniz koddan kontrol edin) |
 
-## 🇹🇷 Türkçe
+Şifreleri ilk kurulumdan sonra değiştirin, yönetim panelini doğrudan internete açmayın. Kendi amatör telsiz çağrı işaretinizi, SSID'nizi, APRS-IS giriş bilgilerini ve koordinatlarınızı kullanın.
 
-### Proje Hakkında
-TA1FM LoRa APRS iGate & Digi, amatör telsizciler için geliştirilmiş, LoRa üzerinden APRS paketlerini alan, APRS-IS ağına aktaran ve internet bağlantısı olmadığında RF Digipeater olarak çalışabilen bir yazılımdır.
+## Kaynak dosyaları ve sürüm yönetimi
 
-İlk sürüm Heltec Wireless Stick Lite V3 (ESP32-S3 / SX1262) donanımında geliştirilmiş ve test edilmiştir.
+Çalışan kart sürümlerinin **`.ino`, uygulama `.bin`, birleşik `.merged.bin`, `.bootloader.bin` ve `.partitions.bin`** dosyaları yukarıdaki kart klasörlerindedir. Eski V1.5.7.1, V1.5.8 ve V2.0.0 BETA 1 (DEV7.2) sürümleri geri dönüş / geçmiş referansı olarak korunmaktadır.
 
-### Özellikler
-- Tracker Aprs-is & RF (v2.0.0)
-- Aprs mesaj Gönderme/Alma (v2.0.0)
-- WX telemetri gönderimi (v2.0.0)
-- Yeni Gelişmiş WebPanel Arayüzü (v2.0.0)
-- 433.775 MHz LoRa APRS, SF12, BW125
-- APRS-IS bağlantısı ve konum beacon gönderimi
-- Otomatik RF Digipeater modu
-- WIDE1-1 / WIDE2-2 paket tekrarlama desteği
-- Web tabanlı ayar ve kontrol paneli
-- Web üzerinden OTA yazılım güncelleme
-- OLED ekran desteği
-- Son 15 RX Beacon listesi
-- RF çıkış gücü ve beacon path ayarları
-- Ayarları yedekleme ve geri yükleme
-- Wi-Fi bağlantısından bağımsız APRS-IS açma/kapatma
+**Derleme notu:** T-Beam ve ESP32 DIY MultiBoard `.ino` kaynakları `board_config.h` ve `variants/` başlık dosyalarına bağımlıdır. Bu yardımcı dosyalar ilgili arşiv klasörlerine henüz eklenmediği için **yalnız `.ino` indirerek yeniden derleme her zaman mümkün değildir**. Hazır BIN dosyaları mevcuttur. Yardımcı kaynakları tamamladığımızda bu not kaldırılacaktır. Tüm model çeşitlerinin otomatik algılanması henüz genel olarak doğrulanmamıştır.
 
-### Kullanılan Donanım
-- Heltec Wireless Stick Lite V3
-- ESP32-S3 mikrodenetleyici
-- SX1262 LoRa modülü
-- Harici SSD1306 OLED ekran
+**Release bilgisi:** Kartlara özel STABLE sürüm notları [RELEASE_NOTES](RELEASE_NOTES/) klasöründedir. GitHub Release sayfasındaki yayımlanma durumu ayrıca kontrol edilmelidir; sürüm notu dosyasının bulunması tek başına yayımlanmış Release anlamına gelmez.
 
-### Durum
-**Saha test sürümü: V1.5.7.1**
+## Dokümantasyon
 
-Yazılım test edilmeye devam etmektedir. Gelecekte farklı ESP32 LoRa kartlarına destek eklenmesi planlanmaktadır.
+- [📘 Türkçe kurulum ve kullanım](KURULUM.md)
+- [🛠️ Arduino IDE derleme](DERLEME.md)
+- [🔌 Donanım bağlantıları](DONANIM_BAGLANTILARI.md)
+- [🌍 English installation guide](INSTALLATION_EN.md)
+- [📋 STABLE sürüm notları](RELEASE_NOTES/)
 
-### Geliştirici
-**TA1FM — Türkiye**
-
----
-
-## 🇬🇧 English
-
-### About
-TA1FM LoRa APRS iGate & Digi is firmware for amateur radio operators. It receives APRS packets over LoRa, forwards them to APRS-IS, and can operate as an RF digipeater when the internet connection is unavailable.
-
-The initial release was developed and tested with the Heltec Wireless Stick Lite V3 (ESP32-S3 / SX1262).
-
-### Features
-- 433.775 MHz LoRa APRS, SF12, BW125
-- APRS-IS connectivity and position beacons
-- Automatic RF digipeater
-- WIDE1-1 / WIDE2-2 path support
-- Web-based configuration and control panel
-- OTA firmware updates through the web interface
-- OLED display support
-- Last 15 received APRS beacons
-- Adjustable RF TX power and beacon path
-- Configuration backup and restore
-- Independent APRS-IS enable/disable control
-
-### Hardware
-- Heltec Wireless Stick Lite V3
-- ESP32-S3 microcontroller
-- SX1262 LoRa transceiver
-- External SSD1306 OLED display
-
-### Status
-**Field-test version: V1.5.7.1**
-
-Support for additional ESP32 LoRa boards is planned.
-
-### Developer
-**TA1FM — Türkiye**
-
----
-
-**73 de TA1FM!** 📡
-## Web Kontrol Paneli / Web Control Panel
+## Ekran görüntüleri
 
 ![TA1FM Web Panel](images/webpanel1.png)
-![mesajlar -( messages )](images/webpanel2.png)
-![TA1FM OLED - GPS - BME280 Bağlantı Şeması](images/oled-gps-bme-baglanti.png)
-📘 [Türkçe Kurulum Rehberi](KURULUM.md)
-📘 [Arduino IDE Derleme Rehberi](DERLEME.md)
-🌍 [English Installation Guide](INSTALLATION_EN.md)
-🔌 [Donanım Bağlantıları / Hardware Connections](DONANIM_BAGLANTILARI.md)
+![APRS Mesajlar](images/webpanel2.png)
+![Heltec OLED / GPS / BME bağlantıları](images/oled-gps-bme-baglanti.png)
+
+Proje: **TA1FM — Türkiye** · Lisans: **GPL-3.0** (depo içindeki LICENSE dosyası geçerlidir).
+
+**73 de TA1FM!** 📡
