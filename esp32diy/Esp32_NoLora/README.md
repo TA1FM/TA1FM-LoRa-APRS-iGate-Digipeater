@@ -10,7 +10,7 @@ Bu klasör, **ESP32 DevKit 30-pin / LoRa modülü olmayan** TA1FM Wi-Fi APRS-IS 
 
 ## Firmware dosyaları
 
-Aşağıdaki dört dosyanın adları kullanıcı tarafından bildirildi; **henüz bu klasöre yüklenmediler**:
+Aşağıdaki firmware dosyaları GitHub klasörüne yüklenmiştir:
 
 | Dosya | Amaç |
 |---|---|
@@ -18,6 +18,7 @@ Aşağıdaki dört dosyanın adları kullanıcı tarafından bildirildi; **henü
 | `TA1FM_LoRa_APRS_Esp32_Diy_Wifi_Tracker.bootloader.bin` | Bootloader |
 | `TA1FM_LoRa_APRS_Esp32_Diy_Wifi_Tracker.partitions.bin` | Bölüm tablosu |
 | `TA1FM_LoRa_APRS_Esp32_Diy_Wifi_Tracker.merged.bin` | USB ile tam flash için birleşik görüntü |
+| `TA1FM_LoRa_APRS_Esp32_Diy_Wifi_Tracker.ino` | Arduino ana kaynak kodu |
 
 **Dikkat:** `merged.bin` OTA üzerinden yüklenmez. Flash adresleri ve bölüm düzeni dosyalar doğrulanmadan varsayılmamalıdır.
 
