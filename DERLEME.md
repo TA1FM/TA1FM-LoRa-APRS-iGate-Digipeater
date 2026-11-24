@@ -29,12 +29,12 @@ Geliştirmede kullanılan ortam:
 
 Sürüm değişiklikleri derleme veya kart davranışını etkileyebilir.
 
-## 3. Kaynak kod düzeni / önemli eksiklik
+## 3. Kaynak kod düzeni ve variant seçimi
 
 - **Heltec DEV8** kaynak kodu [kart klasöründe](heltec/WSL_V3/DEV8/) bağımsız `.ino` olarak yer alır.
 - **T-Beam DEV9.4** ve **DIY NoLoRa DEV8.3** sürümlerinin kaynak kodları `#include "board_config.h"` kullanır.
 - Bu MultiBoard kaynakları için **`board_config.h`** ve **`variants/boards/`, `variants/radios/`** altındaki ilgili `.h` dosyaları gerekir.
-- **Bu yardımcı .h dosyaları GitHub'daki kart firmware klasörlerine henüz yüklenmedi.** Bu nedenle yalnızca GitHub'daki `.ino` dosyasını kopyalamak bu iki kartta derleme için yeterli olmayabilir.
+- **Bu yardımcı .h dosyaları artık ilgili GitHub kart klasörlerine yüklenmiştir.** Kaynak koddan derleme için `.ino`, `board_config.h` ve `variants/` dizinini birlikte indirin. T-Beam profilinde `TA1FM_BOARD_LILYGO_TBEAM_V12_SX1278`, DIY NoLoRa profilinde `TA1FM_BOARD_ESP32_DEVKIT_30` ve `TA1FM_RADIO_NONE` seçili olmalıdır.
 - Eski çalışan kaynak klasörünüzdeki **eşleşen `.h` dosyalarını** aynı Arduino sketch dizininde saklayın. Farklı sürümlerin `.h` dosyalarını rastgele karıştırmayın.
 - Gelecekte tek ana yazılım ve seçimle çoklu kart desteği hedeflenmektedir; tüm kartlarda tam otomatik algılama doğrulanmış değildir.
 
