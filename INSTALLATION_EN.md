@@ -1,120 +1,79 @@
-# TA1FM LoRa APRS iGate & Digi — Installation Guide
+# TA1FM LoRa APRS — Installation & Usage Guide (English)
 
-## Supported Hardware
+Updated **25 November 2026** for the user-confirmed working/stable firmware builds. **Hardware variants are not interchangeable.**
 
-**Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262)**
+## Supported firmware
 
-Version V1.5.7.1 is designed and tested for this board only. Other LoRa boards are not currently supported.
+| Board | MCU / radio | Tested build | Archive |
+|---|---|---|---|
+| Heltec Wireless Stick Lite V3 | ESP32-S3 / SX1262 | V2.0.0 DEV8 **STABLE** | [DEV8](heltec/WSL_V3/DEV8/) |
+| LILYGO T-Beam V1.2 SX127X | ESP32 / SX127X (tested: SX1278) | DEV9.4 **STABLE** | [DEV9.4](lilygo/TBeam_V1.2_SX127X/) |
+| ESP32 DIY 30-pin NoLoRa | ESP32 WROOM / no LoRa | DEV8.3 **STABLE** | [DEV8.3](esp32diy/Esp32_NoLora/) |
 
-## 1. Download the Firmware
+"Stable" refers to the user's confirmed tested hardware and build. It is **not** proof that all revisions with the same chipset work.
 
-Visit the project's GitHub Releases page:
+## Browser-based USB installer
 
-https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digi/releases
+Open [TA1FM Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) in Chrome or Edge. Choose the **exact board and firmware** from the grouped dropdown, connect a USB data cable, then click **INSTALL FIRMWARE** and select the correct serial port.
 
-Download the files for version V1.5.7.1:
+A suitable antenna must be installed on LoRa boards before any transmission. The installer uses each selected board's **merged image at offset `0x0`**. Installation may affect saved data; back up configuration first.
 
-- **`.ino.merged.bin`** — Complete firmware for initial USB flashing.
-- **`.ino.bin`** — Application firmware for OTA updates.
+**Never flash an ESP32-S3 image to a classic ESP32, or an SX127X T-Beam image to an SX126x T-Beam.**
 
-## 2. Initial Firmware Installation
+## File types and OTA
 
-1. Connect your Heltec Wireless Stick Lite V3 to your computer using a USB data cable.
-2. Open an ESP32-S3-compatible flashing application, such as Espressif Flash Download Tool.
-3. Select **ESP32-S3** as the target chip.
-4. Select the downloaded `.ino.merged.bin` file.
-5. Set the flash address to **0x0**.
-6. Select the correct COM port.
-7. Start flashing.
-8. Restart the device after successful installation.
+- **`.merged.bin`**: complete USB install / Web Flasher image.
+- **`.bin`** or **`.ino.bin`**: application firmware for compatible OTA updates.
+- **`.bootloader.bin`**, **`.partitions.bin`**: individual flashing components, for advanced use.
+- **`.ino`**: Arduino source.
 
-**Warning:** Flashing can erase existing settings. Back up your configuration when possible.
+**Do not use a merged image for OTA.** OTA requires a compatible partition scheme and application binary for that same board.
 
-## 3. First Wi-Fi Setup
+## First-time Wi-Fi / administration
 
-When no Wi-Fi network is configured, the device starts its setup access point.
+If no Wi-Fi network is configured, the setup AP may be started:
 
-- **Wi-Fi SSID:** `TA1FM-APRS-SETUP`
-- **Default Wi-Fi password:** `1234567890`
-- **Setup address:** `http://192.168.4.1`
-
-Connect your phone or computer to this Wi-Fi network and open the setup address in your browser.
-
-## 4. Web Administration
-
-Default login credentials:
-
-- **Username:** `admin`
-- **Password:** `PanelDegistir1234`
-
-**Security notice:** These are public default credentials. The administrator password is defined in the firmware source code and must be changed there before recompiling and flashing your customized firmware. Do not expose the administration panel directly to the internet.
-
-## 5. APRS Configuration
-
-Configure the following settings through the web interface:
-
-- Your amateur radio callsign and SSID
-- Wi-Fi network credentials
-- APRS-IS server and passcode
-- Station latitude and longitude
-- Beacon interval and comment
-- LoRa RF transmission settings
-- Digipeater options
-
-Use your own valid callsign and APRS-IS credentials.
-
-## 6. OTA Firmware Updates
-
-To update an existing compatible installation:
-
-1. Download the new `.ino.bin` firmware from GitHub Releases.
-2. Open the device's web administration panel.
-3. Navigate to the OTA firmware update page.
-4. Select the `.ino.bin` file and start the update.
-5. Allow the device to restart.
-6. Verify the installed firmware version.
-
-**Never upload the merged firmware image through OTA.**
-
-## 7. LoRa Settings
-
-The tested configuration is:
-
-| Parameter | Value |
+| Field | Default |
 |---|---|
-| Frequency | 433.775 MHz |
-| Spreading Factor | SF12 |
-| Bandwidth | 125 kHz |
-| Coding Rate | 4/5 |
+| Setup SSID | `TA1FM-APRS-SETUP` |
+| AP password | `1234567890` |
+| Setup page | `http://192.168.4.1` |
+| Panel user | `admin` |
+| Panel password | `1234567890` in the archived source builds; verify for your specific installation |
 
-The automatic RF Digipeater function is disabled by default.
+Change the default passwords after setup and do not expose the local admin interface directly to the Internet. Heltec DEV8 also offers a PRG/GPIO0 button workflow for OLED pages and AP mode.
 
-Transmit only with appropriate authorization and in accordance with local amateur radio regulations.
+## Features and operating modes
 
-## 8. Troubleshooting
+**RF-capable boards (Heltec, T-Beam):** LoRa APRS iGate, conditional backup Digipeater, APRS-IS, GPS Tracker with SmartBeaconing, APRS messaging and acknowledgements, RF/IS beacon options, web panel, OTA, OLED, configuration backup/restore, and available telemetry. The basic 433.775 MHz LoRa APRS modem settings used in this project are **SF12, BW125 kHz, CR 4/5**.
 
-**Setup Wi-Fi not visible:** Restart the device and check the serial monitor for connection status.
+**ESP32 DIY NoLoRa:** GPS / Wi-Fi / APRS-IS Tracker and supported web/OLED functionality. **No RF receive, RF transmit, or RF Digipeater.**
 
-**APRS-IS not connecting:** Verify your Wi-Fi connection, callsign, passcode, server and port.
+The web panel includes status, iGate/Digi, Tracker, Messages, Telemetry, Wi-Fi, System/OTA and Backup sections, as supported by the board.
 
-**No LoRa packets received:** Check your antenna, operating frequency and LoRa configuration.
+Battery measurements depend on hardware: Heltec ADC, T-Beam AXP2101; an ESP32 DIY board without a connected measurement circuit reports unavailable, not a fabricated value. Optional BME280 telemetry requires the actual sensor.
 
-**OTA update fails:** Verify that you selected the application `.ino.bin` file and that the installed partition scheme supports OTA.
+## Initial APRS configuration
 
-## Source Code and License
+1. Set **your own authorized callsign and SSID**.
+2. Configure Wi-Fi and APRS-IS server / login/passcode (the project commonly uses `euro.aprs2.net:14580`).
+3. Set correct coordinates, symbol and comments.
+4. On RF boards, configure beacon, Digi and power only within legal/hardware limits, and confirm antenna connection.
+5. Check APRS-IS login for `verified`, GPS FIX and received packets before enabling more features.
 
-Project repository:
+## Troubleshooting
 
-https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digi
+- **No setup AP:** check boot serial log, Wi-Fi state and supported AP button behavior.
+- **APRS-IS not verified:** check network, callsign, server, port, and passcode.
+- **No GPS fix:** check GPS power, UART and antenna placement.
+- **No RF packets:** check the board's specific radio profile, antenna and LoRa settings.
+- **OTA failed:** verify application BIN vs merged image and partition compatibility.
+- **Unexpected reset:** check the serial monitor (115200 baud) for the final successful initialization line.
 
-License: GNU GPL v3.0
+## Documentation
 
-Acknowledgements: Ricardo Guzman's LoRa APRS iGate project.
+[Turkish setup and usage](KURULUM.md) · [Arduino IDE build guide](DERLEME.md) · [Hardware pinouts](DONANIM_BAGLANTILARI.md) · [Release notes](RELEASE_NOTES/) · [Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/)
 
-https://github.com/richonguzman/LoRa_APRS_iGate
+Source repository: https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater
 
----
-
-**TA1FM LoRa APRS iGate & Digi**
-
-**73 de TA1FM!**
+**73 de TA1FM!** 📡
