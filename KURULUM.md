@@ -1,108 +1,131 @@
-# TA1FM LoRa APRS iGate & Digi — Kurulum Rehberi
+# TA1FM APRS — Türkçe Kurulum ve Kullanım Rehberi
 
-## Desteklenen Donanım
+Bu rehber **25 Kasım 2026 itibarıyla doğrulanan** Heltec DEV8, T-Beam DEV9.4 ve ESP32 DIY NoLoRa DEV8.3 sürümleri içindir.
 
-**Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262)**
+## 1. Doğru kart / firmware seçimi
 
-Bu sürüm yalnızca yukarıdaki kart için geliştirilmiş ve test edilmiştir. Diğer LoRa kartları henüz desteklenmemektedir.
+| Kart | İşlemci / radyo | Seçilecek Web Flasher sürümü |
+|---|---|---|
+| Heltec Wireless Stick Lite V3 | ESP32-S3 / SX1262 | **V2.0.0 DEV8** |
+| LILYGO T-Beam V1.2 SX127X | ESP32 / SX127X (test kartı SX1278) | **DEV9.4** |
+| ESP32 DIY 30-pin NoLoRa | ESP32 WROOM / radyo yok | **DEV8.3** |
 
-## 1. Hazır Yazılımı İndirme
+Desteklenen test donanımının dışındaki bir karta firmware yüklemeyin. Özellikle **SX127X T-Beam** firmware'i **SX1262/SX1268** modellerine uygun değildir. ESP32 DIY NoLoRa cihazı RF APRS yayın/alımı yapmaz.
 
-GitHub projesinin **Releases** bölümünden V1.5.7.1 sürümünü açın.
+Kart firmware arşivleri: [Heltec](heltec/WSL_V3/DEV8/) · [T-Beam](lilygo/TBeam_V1.2_SX127X/) · [ESP32 DIY](esp32diy/Esp32_NoLora/).
 
-https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digi/releases
+## 2. Tarayıcıdan USB ile yükleme
 
-İlk kurulum için `.ino.merged.bin` uzantılı dosyayı indirin.
+[**TA1FM Web Flasher**](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/) açılır menüde kartları gruplandırır.
 
-**Not:** `.ino.bin` dosyası mevcut yazılımın web panelinden OTA ile güncellenmesi içindir.
+1. Bilgisayarda Chrome veya Edge kullanın.
+2. Kartın tam modelini ve firmware sürümünü seçin.
+3. USB veri kablosunu takın; LoRa kartlarında anteni takmadan RF yayınını başlatmayın.
+4. **INSTALL FIRMWARE** düğmesine basıp COM portunu seçin.
+5. Yüklemeyi onaylayıp cihazı yeniden başlatın.
 
-## 2. ESP32'ye İlk Yükleme
+Web Flasher, karta ait **`merged.bin`** dosyasını `0x0` adresinden yükler. Bu işlem ayarları etkileyebilir. Önceden **Yedek** bölümünden yapılandırma yedeği alın.
 
-1. Heltec Wireless Stick Lite V3 kartını USB kablosuyla bilgisayara bağlayın.
-2. ESP32 Flash Download Tool veya ESP32-S3 destekleyen uygun bir flash programı açın.
-3. ESP32-S3 hedefini seçin.
-4. İndirdiğiniz `merged.bin` dosyasını seçin.
-5. Flash başlangıç adresini `0x0` olarak ayarlayın.
-6. Kartın doğru COM portunu seçin.
-7. Flash işlemini başlatın.
-8. İşlem başarıyla tamamlandığında cihazı yeniden başlatın.
+## 3. Manuel USB yükleme ve BIN türleri
 
-**Dikkat:** Yükleme işlemi mevcut yazılımı ve bazı kayıtlı ayarları silebilir. Gerekirse önceden yedek alın. İşlem sırasında USB bağlantısını kesmeyin.
+| Dosya | Amaç |
+|---|---|
+| `.merged.bin` | Birleşik ilk kurulum / USB tam flash (`0x0`) |
+| `.bin` / `.ino.bin` | Uygulama firmware'i; uyumlu OTA düzeninde |
+| `.bootloader.bin` | Ayrı bootloader |
+| `.partitions.bin` | Ayrı bölümleme tablosu |
+| `.ino` | Arduino kaynak kodu |
 
-## 3. İlk Wi-Fi Bağlantısı
+Başka aracın kullanıldığı ayrı parçalı flash işlemlerinde adresleri tahmin etmeyin; derleme ayarlarını doğrulayın. **OTA'ya `merged.bin` yüklemeyin.** ESP32-S3 ve klasik ESP32 görüntülerini karıştırmayın.
 
-Cihazda kayıtlı Wi-Fi ağı yoksa kurulum erişim noktası oluşturulur.
+## 4. İlk Wi-Fi / AP kurulumu
 
-- Wi-Fi ağ adı: `TA1FM-APRS-SETUP`
-- Varsayılan AP şifresi: `1234567890`
-- Web paneli: `http://192.168.4.1`
+Kayıtlı Wi-Fi yoksa cihaz `TA1FM-APRS-SETUP` kurulum ağı açabilir.
 
-Telefon veya bilgisayarla bu ağa bağlanıp tarayıcıdan paneli açın.
+- Kurulum AP şifresi: `1234567890`
+- Kurulum paneli: `http://192.168.4.1`
+- Panel kullanıcısı: `admin`
+- Bu üç kaynaktaki varsayılan panel şifresi: `1234567890`
 
-## 4. Yönetici Girişi
+Cihazın erişim noktasına bağlanıp ağ listesinden ev Wi-Fi'nizi seçin. Normal STA bağlantısı kurulduğunda cihazın IP adresi üzerinden web panelini açın. Heltec DEV8'in **PRG/GPIO0** tuşuna uzun basarak AP moduna geçiş özelliği bulunur. AP davranışı / buton donanımı diğer kartlarda aynı olmak zorunda değildir.
 
-- Kullanıcı adı: `admin`
-- Varsayılan yönetici şifresi: `1234567890`
+İlk açılıştan sonra varsayılan şifreleri değiştirin; paneli internete doğrudan yayınlamayın.
 
-Yönetici şifresi bu sürümün kaynak kodunda tanımlıdır. Şifreyi değiştirmek için kaynak kodu düzenleyip yeniden derlemek gerekir.
+## 5. Web paneli ve kullanım
 
-**Güvenlik:** Yayımlanan varsayılan şifreler herkes tarafından bilinir. Kendi cihazınızda değiştirmeniz önerilir. Yönetim panelini doğrudan internete açmayın.
+Web paneli sürüme / kartın özelliklerine göre şu bölümleri içerir:
 
-## 5. APRS Yapılandırması
+| Bölüm | Kullanım |
+|---|---|
+| **Ana** | Wi-Fi, IP, APRS-IS, LoRa, GPS ve son alınan paketler |
+| **iGate & Digi** | APRS-IS yönlendirme, otomatik/yedek Digipeater, beacon ve WIDE yolları |
+| **Tracker** | Çağrı işareti, konum, sembol, SmartBeaconing, sabit/gelişmiş gönderim |
+| **Mesajlar** | APRS mesajı gönderme/alma, bekleyen ACK ve mesaj geçmişi |
+| **Telemetri** | Pil ve mevcut sensör ölçümlerini kontrol etme |
+| **Wi-Fi** | Ağ kayıtları ve bağlantı seçenekleri |
+| **Sistem** | Cihaz durumu, yeniden başlatma, OTA |
+| **Yedek** | Ayarları dışa aktarma ve geri yükleme |
 
-Web panelinden şu bilgileri düzenleyin:
+**Önce çağrı işaretinizi, SSID'nizi ve APRS-IS passcode'unuzu yapılandırın.** Örnek çağrı işaretleri / koordinatları olduğu gibi kullanmayın.
 
-- Kendi amatör telsiz çağrı işaretiniz ve SSID
-- Wi-Fi ağınız ve şifreniz
-- APRS-IS sunucusu, port ve passcode
-- İstasyon koordinatları
-- Beacon aralığı, sembol ve açıklama
-- RF çıkış gücü
-- Digipeater ve WIDE ayarları
+## 6. APRS-IS iGate / Digi
 
-**Varsayılan APRS-IS sunucusu:** `euro.aprs2.net:14580`
+433.775 MHz LoRa APRS için projede kullanılan temel modem değerleri:
 
-İnternet bağlantısı ve APRS-IS girişi doğrulandıktan sonra iGate işlevini kontrol edin.
+| Parametre | Değer |
+|---|---|
+| Frekans | 433.775 MHz |
+| Spreading factor | SF12 |
+| Bant genişliği | 125 kHz |
+| Kodlama oranı | 4/5 |
 
-## 6. OTA Yazılım Güncelleme
+Varsayılan APRS-IS sunucu ayarı `euro.aprs2.net:14580` olabilir; paneldeki mevcut ayarı kontrol edin. APRS-IS bağlantı durumunda `verified` doğrulamasını arayın. Digi özelliğini yalnız uygun yetki, çağrı işareti, anten ve RF ayarlarıyla etkinleştirin. LoRa **olmayan DIY kartta iGate RF RX / Digi kullanılamaz**.
 
-Daha sonraki sürümlerde cihazı USB bağlantısı olmadan güncellemek mümkündür.
+## 7. GPS Tracker ve SmartBeaconing
 
-1. Releases sayfasından yeni sürümün `.ino.bin` dosyasını indirin.
-2. Web panelinde **OTA Güncelle** sayfasını açın.
-3. Dosyayı seçerek güncellemeyi başlatın.
-4. İşlem tamamlanınca cihazın yeniden başlamasını bekleyin.
-5. Web panelinden sürümü kontrol edin.
+- **LoRa RF / APRS-IS / her iki kanal** seçeneği yalnız radyo donanımı bulunan sürümlerde anlamlıdır.
+- **DIY NoLoRa:** Konum için GPS + Wi-Fi üzerinden **APRS-IS** kanalını kullanın.
+- GPS FIX ve uydu durumunu web panelinden veya uygun OLED ekranından kontrol edin.
+- Beacon periyodu, hareket/hız ayarları, APRS sembolü, yorum ve durum bilgisini panelden seçin.
+- SmartBeaconing, GPS'in verdiği hız/hareket bilgilerine göre gönderim aralığını değiştirebilir.
 
-**OTA için `merged.bin` kullanmayın.**
+## 8. APRS mesajlaşma
 
-## 7. RF ve Digipeater Kullanımı
+Mesajlar ekranından hedef çağrı işaretini ve metni girerek uygun kanaldan gönderim yapın. ACK alanında alınan onaylar görüntülenebilir. T-Beam DEV9.4'te SX127X üzerinden RF mesaj gönderimi ve **karşı istasyondan gerçek ACK alımı** doğrulandı. APRS-IS üzerinden mesaj göndermek için sunucu bağlantısı gerekir.
 
-Saha testlerindeki LoRa parametreleri:
+## 9. OLED, pil ve sensörler
 
-- Frekans: 433.775 MHz
-- Spreading Factor: SF12
-- Bandwidth: 125 kHz
-- Coding Rate: 4/5
+- **Heltec DEV8:** OLED ekran sayfaları; kısa PRG tuş basımıyla ekran dolaşma, uzun basımla AP modu. Harici ekran SSD1306/SH1106 seçeneğine göre yapılandırılır.
+- **T-Beam DEV9.4:** SSD1306 OLED ve GPS çalıştığı doğrulandı; pil/güç yönetimi AXP2101.
+- **ESP32 DIY:** Harici OLED I²C ve GPS UART, pil ölçümü için harici uygun devre yoksa **N/A**.
 
-Digipeater işlevi varsayılan olarak kapalıdır. RF yayınına izin veren ayarlar yalnızca gerekli yetkilendirme ve uygun anten sistemi bulunduğunda açılmalıdır.
+Pil yüzdesi ölçüm yöntemine bağlı yaklaşık değerdir. BME280 sensörü yoksa uydurma sıcaklık/nem/basınç verisi gönderilmemelidir. RF güç ayarları kartın donanım limitlerine bağlıdır; SX127X ve SX1262 sınırlarını eşit varsaymayın.
 
-Çıkış gücü, harici PA kullanımı, anten kazancı ve yerel mevzuat birlikte değerlendirilmelidir.
+## 10. OTA güncelleme
 
-## 8. Sorun Giderme
+1. Firmware'i **aynı kart ve uyumlu bölümleme düzeni** için seçin.
+2. Ayarlarınızı yedekleyin.
+3. Web panelinin Sistem / OTA bölümünü açın.
+4. Sadece **uygulama `.bin`** dosyasını yükleyin.
+5. Cihaz yeniden başladıktan sonra sürümü ve ayarları kontrol edin.
 
-**Kurulum ağı görünmüyorsa:** Cihazı yeniden başlatın, USB seri monitörden bağlantı durumunu kontrol edin.
+**`.merged.bin` OTA dosyası değildir.** OTA başarısızsa bölümleme şemasını, dosya türünü ve cihazın mevcut firmware'ini kontrol edin.
 
-**APRS-IS bağlanmıyorsa:** Wi-Fi bağlantısını, çağrı işaretini, passcode'u, sunucu adresini ve portu kontrol edin.
+## 11. Sorun giderme
 
-**RX paketleri görünmüyorsa:** Anten bağlantısını, 433.775 MHz frekansını ve LoRa parametrelerini kontrol edin.
+| Belirti | Kontrol |
+|---|---|
+| Kurulum AP'si yok | Seri monitör 115200 baud; Wi-Fi ayarı, başlatma logu, varsa AP tuşu |
+| APRS-IS verified olmuyor | Wi-Fi, çağrı işareti, APRS-IS sunucu / port / passcode |
+| GPS FIX yok | GPS anteni, açık gökyüzü, UART ve güç hattı |
+| LoRa RX yok | Doğru kart, anten, modem parametreleri ve LoRa başlatma logları |
+| RF TX yok | Yetkilendirme/ayar, mesaj beacon izni, RF çıkış sınırı, anten |
+| Watchdog reset | Seri logda son işlem; kart profilini ve güç yönetimini kontrol edin |
+| `Incorrect size of core dump image` | Eski/uyumsuz coredump verisi olabilir; tek başına LoRa arızası kanıtı değildir |
+| OTA reddedildi | Yanlış `merged.bin`, partition uyumsuzluğu, yanlış kart firmware'i |
 
-**OTA başarısızsa:** Doğru `.ino.bin` dosyasının seçildiğini ve kullanılan bölümleme düzeninin OTA desteklediğini kontrol edin.
+## 12. Diğer rehberler
 
----
+[Donanım bağlantıları](DONANIM_BAGLANTILARI.md) · [Arduino IDE derleme](DERLEME.md) · [English guide](INSTALLATION_EN.md) · [STABLE sürüm notları](RELEASE_NOTES/)
 
-**Proje:** TA1FM LoRa APRS iGate & Digi
-
-**GitHub:** https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digi
-
-**73 de TA1FM!**
+**73 de TA1FM!** 📡
