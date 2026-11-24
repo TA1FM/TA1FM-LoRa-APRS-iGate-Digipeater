@@ -4,7 +4,6 @@
   RadioLib 7.8.1, Adafruit SSD1306, Adafruit SH110X, Adafruit GFX
   APRS-IS iGate + optional backup RF digipeater. Own position beacon to APRS-IS in iGate mode; RF in backup Digi mode.
   AUTO DIGI OFF BY DEFAULT. TX requires explicit web opt-in.
-  Pinout: Ricardo Guzman WSL V3 board_pinout.h (provided by user).
 */
 #include <Arduino.h>
 #include <SPI.h>
