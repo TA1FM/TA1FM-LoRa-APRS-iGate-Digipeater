@@ -12,7 +12,7 @@
 main{max-width:780px;padding:44px 20px 70px;margin:auto}.eyebrow{color:#5eead4;letter-spacing:.13em;font-size:.78rem;font-weight:800}h1{font-size:clamp(1.9rem,5vw,3.15rem);letter-spacing:-.035em;line-height:1.14;margin:15px 0}.lead{color:#b8c9dc;font-size:1.06rem;line-height:1.7;max-width:680px}
 .panel{background:#101f34;border:1px solid #304963;border-radius:20px;padding:28px;margin-top:30px;box-shadow:0 18px 45px #01091355}h2{margin:0 0 18px;font-size:1.28rem}p,li{line-height:1.65}.muted{color:#bed0e1}.tag{display:inline-block;background:#133e43;color:#8bf2e0;padding:6px 12px;border-radius:99px;font-size:.84rem;font-weight:700;margin-top:12px}ol{padding-left:24px}li{margin:8px 0}
 .warning{border-left:4px solid #f6c55e;background:#3a2d1b;padding:14px 17px;border-radius:8px;margin:21px 0;color:#ffe8b0}.button-shell{padding:18px 0 5px}.support{color:#fca5a5;line-height:1.5}code{background:#243449;border-radius:5px;padding:2px 6px;color:#a7f3d0;word-break:break-word}a{color:#66dbec}a:hover{color:white}footer{margin-top:28px;color:#92a8c0;font-size:.9rem}
-fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px}.option{display:block;cursor:pointer;padding:15px 16px;border:1px solid #395572;border-radius:12px;margin:10px 0;background:#172940}.option:has(input:checked){border:2px solid #5eead4;background:#12383c;padding:14px 15px}.option input{accent-color:#14b8a6;margin-right:10px}.option small{display:block;margin:6px 0 0 27px;color:#b7cde0;line-height:1.45} .option-unavailable{opacity:.72;cursor:not-allowed;border-style:dashed} .option-unavailable input{cursor:not-allowed} .option-unavailable a{cursor:pointer}.selected{font-weight:650;color:#a5f3e0;margin:12px 0}.installbtn{font:inherit;border:0;border-radius:12px;padding:15px 30px;font-weight:800;font-size:1.08rem;background:#14b8a6;color:#051524;cursor:pointer} @media(max-width:500px){.panel{padding:20px}}
+fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px}.option{display:block;cursor:pointer;padding:15px 16px;border:1px solid #395572;border-radius:12px;margin:10px 0;background:#172940}.option:has(input:checked){border:2px solid #5eead4;background:#12383c;padding:14px 15px}.option input{accent-color:#14b8a6;margin-right:10px}.option small{display:block;margin:6px 0 0 27px;color:#b7cde0;line-height:1.45} .option-unavailable{opacity:.72;cursor:not-allowed;border-style:dashed} .option-unavailable input{cursor:not-allowed} .option-unavailable a{cursor:pointer}#firmware-select{display:block;width:100%;font:inherit;font-size:1rem;line-height:1.5;color:#f4f8ff;background:#172940;border:1px solid #5eead4;border-radius:12px;padding:14px 16px;cursor:pointer;min-height:54px;outline-offset:3px}#firmware-select:focus-visible{outline:3px solid #5eead4}#firmware-select option,#firmware-select optgroup{background:#172940;color:#f4f8ff}.firmware-detail{padding:12px 15px;margin:12px 0 0;border:1px solid #304963;border-radius:10px;background:#14263d}.selected{font-weight:650;color:#a5f3e0;margin:12px 0}.installbtn{font:inherit;border:0;border-radius:12px;padding:15px 30px;font-weight:800;font-size:1.08rem;background:#14b8a6;color:#051524;cursor:pointer} @media(max-width:500px){.panel{padding:20px}}
 </style>
 </head>
 <body><main>
@@ -22,13 +22,23 @@ fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px
 <span class="tag">Heltec ESP32-S3 · ESP32 DIY · LILYGO T-Beam ESP32</span><p class="muted" style="font-size:.92rem">V2.0.0 BETA 1 (DEV7.2) Web Flasher üzerinden yüklenebilir. Test sürümüdür; mevcut çalışan yazılımınızı ve ayarlarınızı önceden yedekleyin.</p>
 <section class="panel" aria-labelledby="install-title">
 <h2 id="install-title">Firmware yükleme / Install firmware</h2>
-<fieldset><legend>Yüklenecek sürümü seçin / Select version</legend>
-<label class="option"><input type="radio" name="firmware" value="v1.5.8" checked><strong>V1.5.8 — Heltec WSL V3 / Güncel sürüm</strong><small>SSD1306 / SH1106, pil ölçümü ve kalibrasyon, OLED uyku, güvenlik ayarları.</small></label>
-<label class="option"><input type="radio" name="firmware" value="v1.5.7.1"><strong>V1.5.7.1 — Heltec WSL V3 / Önceki sürüm</strong><small>İlk yayımlanan kararlı saha testi; eski sürüme dönüş için.</small></label>
-<label class="option"><input type="radio" name="firmware" value="v2.0.0-beta.1"><strong>V2.0.0 BETA 1 (DEV7.2) — Heltec test sürümü / Testing</strong><small>Heltec WSL V3 (ESP32-S3 + SX1262). GPS Tracker, SmartBeaconing, APRS mesajlaşma, telemetri ve yeni Sistem paneli. <strong>⚠ BETA:</strong> uzun süreli saha testleri tamamlanmadı; kurmadan önce ayarlarınızı yedekleyin. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1" target="_blank" rel="noopener">BETA kaynak kodu</a></small></label>
-<label class="option"><input type="radio" name="firmware" value="heltec-dev8"><strong>Heltec Wireless Stick Lite V3 — V2.0.0 DEV8</strong><small>ESP32-S3 + SX1262. OLED sayfaları, PRG butonu/AP modu, GPS Tracker, iGate, Digi, APRS mesajlaşma ve web panel. <strong>⚠ Çalışan geliştirme referansı:</strong> uzun süreli STABLE onayı yok. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/heltec/WSL_V3/DEV8" target="_blank" rel="noopener">Kaynak kodu ve firmware</a></small></label>
-<label class="option"><input type="radio" name="firmware" value="esp32diy-nolora"><strong>ESP32 DIY / NoLoRa — DEV8.3</strong><small>ESP32 DevKit 30-pin WROOM. LoRa modülü olmadan Wi-Fi / APRS-IS Tracker. <strong>⚠ TEST:</strong> uzun süreli kararlılık doğrulanmadı. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/esp32diy/Esp32_NoLora" target="_blank" rel="noopener">Firmware arşivi</a></small></label>
-<label class="option"><input type="radio" name="firmware" value="tbeam-v12-sx127x"><strong>LILYGO T-Beam V1.2 / SX127X — DEV9.4</strong><small>ESP32 + SX127X (test kartı SX1278), AXP2101. RF RX/TX, GPS, OLED, APRS-IS ve web panel üzerinde çalıştığı bildirildi. <strong>⚠ TEST:</strong> diğer T-Beam revizyonları için doğrulanmadı. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/lilygo/TBeam_V1.2_SX127X" target="_blank" rel="noopener">Firmware arşivi</a></small></label>
+<fieldset>
+<legend><label for="firmware-select">Kart ve firmware seçin / Select board &amp; firmware</label></legend>
+<select id="firmware-select" name="firmware" aria-describedby="firmware-detail">
+  <optgroup label="Heltec Wireless Stick Lite V3 · ESP32-S3 / SX1262">
+    <option value="heltec-dev8">V2.0.0 DEV8 — Çalışan geliştirme referansı</option>
+    <option value="v1.5.8" selected>V1.5.8 — Önceki varsayılan sürüm</option>
+    <option value="v1.5.7.1">V1.5.7.1 — Eski sürüm</option>
+    <option value="v2.0.0-beta.1">V2.0.0 BETA 1 (DEV7.2) — Test sürümü</option>
+  </optgroup>
+  <optgroup label="ESP32 DIY · ESP32 WROOM">
+    <option value="esp32diy-nolora">NoLoRa — Wi-Fi APRS-IS Tracker DEV8.3</option>
+  </optgroup>
+  <optgroup label="LILYGO T-Beam · ESP32">
+    <option value="tbeam-v12-sx127x">T-Beam V1.2 / SX127X — DEV9.4</option>
+  </optgroup>
+</select>
+<p class="muted firmware-detail" id="firmware-detail" aria-live="polite">Heltec WSL V3 / ESP32-S3 + SX1262. V1.5.8; OLED, pil ölçümü ve güvenlik ayarları. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater">Firmware deposu</a>.</p>
 </fieldset>
 <p class="selected" id="selected-version" aria-live="polite">Seçilen / Selected: V1.5.8</p>
 <ol><li>Seçtiğiniz kartın modelini kontrol edin; LoRa kullanan kartta uygun anteni bağlayın ve USB veri kablosunu takın.</li><li>Sürümü seçip <strong>INSTALL FIRMWARE</strong> butonuna basın.</li><li>Doğru COM portunu seçin ve yüklemeyi onaylayın.</li><li>İşlem tamamlanınca cihazı yeniden başlatın.</li></ol>
@@ -50,12 +60,38 @@ const installer=document.getElementById('installer');
 const label=document.getElementById('selected-version');
 const manifests={'v1.5.8':'./manifest-v1.5.8.json','v1.5.7.1':'./manifest-v1.5.7.1.json','v2.0.0-beta.1':'./manifest-v2.0.0-beta.1.json','heltec-dev8':'./manifest-heltec-dev8.json','esp32diy-nolora':'./manifest-esp32diy-nolora.json','tbeam-v12-sx127x':'./manifest-tbeam-v1.2-sx127x.json'};
 const displayNames={'v1.5.8':'Heltec WSL V3 — V1.5.8','v1.5.7.1':'Heltec WSL V3 — V1.5.7.1','v2.0.0-beta.1':'Heltec WSL V3 — V2.0.0 BETA 1','heltec-dev8':'Heltec WSL V3 — V2.0.0 DEV8','esp32diy-nolora':'ESP32 DIY NoLoRa — DEV8.3','tbeam-v12-sx127x':'LILYGO T-Beam V1.2 SX127X — DEV9.4'};
-for(const input of document.querySelectorAll('input[name="firmware"]')){
-  input.addEventListener('change',()=>{
-    if(!input.checked)return;
-    installer.setAttribute('manifest',manifests[input.value]);
-    label.textContent='Seçilen / Selected: '+displayNames[input.value];
-  });
+const descriptions={
+  'heltec-dev8':'Heltec WSL V3 · ESP32-S3 / SX1262. V2.0.0 DEV8: OLED menüleri, PRG butonu/AP modu, GPS Tracker, iGate, Digi, mesajlaşma. Çalışan geliştirme referansı; uzun süreli STABLE testi yok.',
+  'v1.5.8':'Heltec WSL V3 · ESP32-S3 / SX1262. V1.5.8: OLED, pil ölçümü ve güvenlik ayarları. Eski varsayılan sürüm.',
+  'v1.5.7.1':'Heltec WSL V3 · ESP32-S3 / SX1262. V1.5.7.1: önceki sürüm; geri dönüş için.',
+  'v2.0.0-beta.1':'Heltec WSL V3 · ESP32-S3 / SX1262. V2.0.0 BETA 1 (DEV7.2): GPS Tracker, SmartBeaconing, mesajlaşma, telemetri. BETA; ayarlarınızı yedekleyin.',
+  'esp32diy-nolora':'ESP32 DevKit 30-pin WROOM. LoRa modülü olmadan Wi-Fi / APRS-IS Tracker DEV8.3. TEST; uzun süreli kararlılık doğrulanmadı.',
+  'tbeam-v12-sx127x':'LILYGO T-Beam V1.2 · ESP32 / SX127X (test edilen kart SX1278), AXP2101. DEV9.4 üzerinde RF RX/TX, GPS, OLED, APRS-IS ve panel test edildi; farklı revizyonlarda doğrulanmadı.'
+};
+const sourceLinks={
+  'heltec-dev8':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/heltec/WSL_V3/DEV8',
+  'v1.5.8':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater',
+  'v1.5.7.1':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater',
+  'v2.0.0-beta.1':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1',
+  'esp32diy-nolora':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/esp32diy/Esp32_NoLora',
+  'tbeam-v12-sx127x':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/lilygo/TBeam_V1.2_SX127X'
+};
+const firmwareSelect=document.getElementById('firmware-select');
+const detail=document.getElementById('firmware-detail');
+function selectFirmware(){
+  const value=firmwareSelect.value;
+  if(!Object.prototype.hasOwnProperty.call(manifests,value))return;
+  installer.setAttribute('manifest',manifests[value]);
+  label.textContent='Seçilen / Selected: '+displayNames[value];
+  detail.replaceChildren(document.createTextNode(descriptions[value]+' '));
+  const a=document.createElement('a');
+  a.href=sourceLinks[value];
+  a.target='_blank';
+  a.rel='noopener noreferrer';
+  a.textContent='Kaynak kodu / Firmware';
+  detail.appendChild(a);
 }
+firmwareSelect.addEventListener('change',selectFirmware);
+selectFirmware();
 </script>
 </body></html>
