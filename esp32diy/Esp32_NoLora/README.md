@@ -26,7 +26,7 @@ LoRa modülü takılı ESP32 DIY sürümleri ileride ayrı `esp32diy/Esp32_LoRa/
 
 ## Kaynak koddan derleme notu
 
-Bu MultiBoard `.ino` kaynağı `board_config.h` ve kart/radyo `variants/` başlık dosyalarını gerektirir. Bu yardımcı `.h` dosyaları henüz GitHub klasörüne yüklenmedi; dolayısıyla `.ino` tek başına yeniden derlenebilir tam paket değildir.
+**`board_config.h` ve kart/radyo `variants/` başlık dosyaları artık bu GitHub klasöründedir.** Kaynak koddan derlerken tüm klasör yapısını indirin; yalnız `.ino` yeterli değildir. `board_config.h` içinde ESP32 DevKit ve `TA1FM_RADIO_NONE` seçili olmalıdır.
 
 ## Belgeler
 
