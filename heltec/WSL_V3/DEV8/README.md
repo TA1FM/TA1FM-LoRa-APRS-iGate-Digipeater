@@ -2,7 +2,7 @@
 
 Bu klasör **Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262)** için **V2.0.0 DEV8 OLED / Buton / AP** yazılımının kaynak kodunu ve derlenmiş firmware dosyalarını içerir.
 
-**Durum:** Kullanıcı tarafından çalışan referans olarak bildirilmiştir. Uzun süreli tüm saha testleri tamamlanmış bir STABLE etiketi değildir. DEV8.1 ayrı sürüm olarak kullanılmıyor.
+**Durum: STABLE — kullanıcı tarafından 25 Kasım 2026'da kararlı çalıştığı doğrulandı.** Doğrulama test edilen Heltec WSL V3 donanımı içindir. DEV8.1 ayrı bir sürüm değildir; doğru sürüm adı **V2.0.0 DEV8**.
 
 ## Dosyalar
 
@@ -28,3 +28,7 @@ APRS-IS iGate, LoRa Digipeater, GPS Tracker ve SmartBeaconing, APRS mesajlaşma,
 - LoRa kullanımında doğru frekans bandı için uygun anten bağlayın.
 
 [TA1FM Web Flasher](https://ta1fm.github.io/TA1FM-LoRa-APRS-iGate-Digipeater/)
+
+## Belgeler
+
+[Türkçe kurulum ve kullanım](../../../KURULUM.md) · [Derleme](../../../DERLEME.md) · [Donanım bağlantıları](../../../DONANIM_BAGLANTILARI.md) · [STABLE sürüm notu](../../../RELEASE_NOTES/heltec-wsl-v3-dev8-stable.md)
