@@ -62,7 +62,7 @@ Kaydedilmiş Wi-Fi yoksa kurulum AP'si oluşturulur:
 
 Çalışan kart sürümlerinin **`.ino`, uygulama `.bin`, birleşik `.merged.bin`, `.bootloader.bin` ve `.partitions.bin`** dosyaları yukarıdaki kart klasörlerindedir. Eski V1.5.7.1, V1.5.8 ve V2.0.0 BETA 1 (DEV7.2) sürümleri geri dönüş / geçmiş referansı olarak korunmaktadır.
 
-**Derleme notu:** T-Beam ve ESP32 DIY MultiBoard `.ino` kaynakları `board_config.h` ve `variants/` başlık dosyalarına bağımlıdır. Bu yardımcı dosyalar ilgili arşiv klasörlerine henüz eklenmediği için **yalnız `.ino` indirerek yeniden derleme her zaman mümkün değildir**. Hazır BIN dosyaları mevcuttur. Yardımcı kaynakları tamamladığımızda bu not kaldırılacaktır. Tüm model çeşitlerinin otomatik algılanması henüz genel olarak doğrulanmamıştır.
+**Derleme notu:** T-Beam DEV9.4 ve ESP32 DIY NoLoRa DEV8.3 için `board_config.h` ve `variants/boards/`, `variants/radios/` başlık dosyaları ilgili GitHub klasörlerine yüklenmiştir. Kaynak koddan derlerken **tüm ilgili klasörü** indirin; yalnız `.ino` dosyası yeterli değildir. `board_config.h` içinde doğru kart/radyo seçili olmalıdır. Hazır BIN dosyaları da mevcuttur. Tüm model çeşitlerinin otomatik algılanması henüz doğrulanmamıştır.
 
 **Release bilgisi:** Kartlara özel STABLE sürüm notları [RELEASE_NOTES](RELEASE_NOTES/) klasöründedir. GitHub Release sayfasındaki yayımlanma durumu ayrıca kontrol edilmelidir; sürüm notu dosyasının bulunması tek başına yayımlanmış Release anlamına gelmez.
 
