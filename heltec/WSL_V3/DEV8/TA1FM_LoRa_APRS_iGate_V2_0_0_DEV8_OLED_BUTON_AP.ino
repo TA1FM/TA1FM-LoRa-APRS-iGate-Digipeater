@@ -1,10 +1,9 @@
 /*
-  TA1FM LoRa APRS iGate & Digi V2.0.0 DEV8 (OLED menu / PRG AP)
+  TA1FM LoRa APRS iGate & Digi V2.0.0 DEV8_1 Fix (OLED menu / PRG AP)
   Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262), SSD1306 / SH1106 / OFF on Wire1
   RadioLib 7.8.1, Adafruit SSD1306, Adafruit SH110X, Adafruit GFX
   APRS-IS iGate + optional backup RF digipeater. Own position beacon to APRS-IS in iGate mode; RF in backup Digi mode.
   AUTO DIGI OFF BY DEFAULT. TX requires explicit web opt-in.
-  Pinout: Ricardo Guzman WSL V3 board_pinout.h (provided by user).
 */
 #include <Arduino.h>
 #include <SPI.h>
