@@ -19,7 +19,7 @@ Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262) icin V2.1.0 Arduino kaynak kod
 
 Kaynak kod ve derlenmis BIN dosyalari GitHub klasorune yuklenmistir. Web Flasher varsayilan Heltec V2.1.0 secenegini kullanir.
 
-**Test notu:** Duzenlenmis yedek geri yukleme kontroluyle olusturulan yeni BIN'in cihaz uzerindeki tam fabrika sifirlama / eski JSON geri yukleme testi ve USB Web Flasher testi henuz dogrulanmadi; bunu sonraki kontrol adimi olarak uygulayin.
+**Test sonucu (25 Kasim 2026):** Kullanici V2.1.0 BIN dosyasini USB Web Flasher ile basariyla yukledigini ve onceki ayar JSON yedegini sorunsuz geri yukledigini dogruladi. Bu sonuc test edilen Heltec WSL V3 donanimi icin gecerlidir.
 
 **Uyari:** `merged.bin` yalnizca tam flash / USB yukleme icindir. OTA panelinden `.bin` uygulama dosyasini kullanin, `merged.bin` dosyasini OTA'ya yuklemeyin.
 Kart: Heltec Wireless Stick Lite V3, ESP32-S3, SX1262. OTA destekli bolum duzeni gereklidir.
