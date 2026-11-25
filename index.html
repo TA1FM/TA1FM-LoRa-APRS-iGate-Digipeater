@@ -19,13 +19,14 @@ fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px
 <div class="eyebrow">TA1FM · OPEN SOURCE · WEB FLASHER</div>
 <h1>LoRa APRS iGate &amp; Digi<br>Web Installer</h1>
 <p class="lead">Heltec Wireless Stick Lite V3, ESP32 DIY NoLoRa ve LILYGO T-Beam V1.2 SX127X kartlarına uygun TA1FM firmware yazılımını Chrome veya Edge üzerinden USB ile yükleyin. Arduino IDE gerekmez.</p>
-<span class="tag">Heltec ESP32-S3 · ESP32 DIY · LILYGO T-Beam ESP32</span><p class="muted" style="font-size:.92rem">Heltec DEV8 fabrika ilk kurulumunda hata verdigi icin web yuklemeden kaldirildi; V2.1.0 kaynak kodu eklendi, yeni BIN bekleniyor. LILYGO T-Beam SX127X DEV9.4 ve ESP32 DIY NoLoRa DEV8.3 test edilmis surumlerdir. Kartınıza uygun yazılımı menüden seçin; eski sürümler geri dönüş için korunur.</p>
+<span class="tag">Heltec ESP32-S3 · ESP32 DIY · LILYGO T-Beam ESP32</span><p class="muted" style="font-size:.92rem">Heltec V2.1.0 yeni BIN dosyalariyla eklendi; eski sorunlu DEV8 kaldirildi. LILYGO T-Beam SX127X DEV9.4 ve ESP32 DIY NoLoRa DEV8.3 secenekleri korunuyor. Kartınıza uygun yazılımı menüden seçin; eski sürümler geri dönüş için korunur.</p>
 <section class="panel" aria-labelledby="install-title">
 <h2 id="install-title">Firmware yükleme / Install firmware</h2>
 <fieldset>
 <legend><label for="firmware-select">Kart ve firmware seçin / Select board &amp; firmware</label></legend>
 <select id="firmware-select" name="firmware" aria-describedby="firmware-detail">
   <optgroup label="Heltec Wireless Stick Lite V3 Oled+GPS · ESP32-S3 / SX1262">
+    <option value="heltec-v2.1.0" selected>V2.1.0 — Yeni sürüm (25.11.2026)</option>
     <option value="v1.5.8">V1.5.8 — Eski sürüm</option>
     <option value="v1.5.7.1">V1.5.7.1 — Eski sürüm</option>
     <option value="v2.0.0-beta.1">V2.0.0 BETA 1 (DEV7.2) — Test sürümü</option>
@@ -34,15 +35,15 @@ fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px
     <option value="esp32diy-nolora">NoLoRa — Wi-Fi APRS-IS Tracker DEV8.3 STABLE</option>
   </optgroup>
   <optgroup label="LILYGO T-Beam · ESP32">
-    <option value="tbeam-v12-sx127x" selected>T-Beam V1.2 / SX127X — DEV9.4 STABLE (24.11.2026)</option>
+    <option value="tbeam-v12-sx127x">T-Beam V1.2 / SX127X — DEV9.4 STABLE (24.11.2026)</option>
   </optgroup>
 </select>
 <p class="muted firmware-detail" id="firmware-detail" aria-live="polite">Heltec WSL V3 / ESP32-S3 + SX1262. V1.5.8; OLED, pil ölçümü ve güvenlik ayarları. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater">Firmware deposu</a>.</p>
 </fieldset>
-<p class="selected" id="selected-version" aria-live="polite">Seçilen / Selected: LILYGO T-Beam V1.2 SX127X — DEV9.4 STABLE</p>
+<p class="selected" id="selected-version" aria-live="polite">Seçilen / Selected: Heltec WSL V3 — V2.1.0</p>
 <ol><li>Seçtiğiniz kartın modelini kontrol edin; LoRa kullanan kartta uygun anteni bağlayın ve USB veri kablosunu takın.</li><li>Sürümü seçip <strong>INSTALL FIRMWARE</strong> butonuna basın.</li><li>Doğru COM portunu seçin ve yüklemeyi onaylayın.</li><li>İşlem tamamlanınca cihazı yeniden başlatın.</li></ol>
 <div class="warning"><strong>Önemli / Important:</strong> Bu işlem mevcut firmware'i değiştirir ve kayıtlı Wi-Fi/APRS ayarlarını silebilir. Yedek alın. Eski sürüme dönüşte ayar uyumluluğu garanti değildir. <strong>Yanlış karta yanlış firmware yüklemeyin!</strong> Heltec sürümleri ESP32-S3, DIY ve T-Beam sürümleri klasik ESP32 içindir. T-Beam dosyası yalnızca doğrulanan V1.2 SX127X donanımına yöneliktir. USB bağlantısını kesmeyin.</div>
-<div class="button-shell"><esp-web-install-button id="installer" manifest="./manifest-tbeam-v1.2-sx127x.json">
+<div class="button-shell"><esp-web-install-button id="installer" manifest="./manifest-heltec-v2.1.0.json">
 <button class="installbtn" slot="activate">🔌 INSTALL FIRMWARE</button>
 <span slot="unsupported" class="support">Web Serial desteklenmiyor. Windows, macOS veya Linux üzerinde güncel Chrome/Edge kullanın.</span>
 <span slot="not-allowed" class="support">Bu sayfa HTTPS üzerinden açılmalıdır.</span>
@@ -57,9 +58,10 @@ fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px
 <script>
 const installer=document.getElementById('installer');
 const label=document.getElementById('selected-version');
-const manifests={'v1.5.8':'./manifest-v1.5.8.json','v1.5.7.1':'./manifest-v1.5.7.1.json','v2.0.0-beta.1':'./manifest-v2.0.0-beta.1.json','esp32diy-nolora':'./manifest-esp32diy-nolora.json','tbeam-v12-sx127x':'./manifest-tbeam-v1.2-sx127x.json'};
-const displayNames={'v1.5.8':'Heltec WSL V3 — V1.5.8','v1.5.7.1':'Heltec WSL V3 — V1.5.7.1','v2.0.0-beta.1':'Heltec WSL V3 — V2.0.0 BETA 1','esp32diy-nolora':'ESP32 DIY NoLoRa — DEV8.3 STABLE','tbeam-v12-sx127x':'LILYGO T-Beam V1.2 SX127X — DEV9.4 STABLE'};
+const manifests={'heltec-v2.1.0':'./manifest-heltec-v2.1.0.json','v1.5.8':'./manifest-v1.5.8.json','v1.5.7.1':'./manifest-v1.5.7.1.json','v2.0.0-beta.1':'./manifest-v2.0.0-beta.1.json','esp32diy-nolora':'./manifest-esp32diy-nolora.json','tbeam-v12-sx127x':'./manifest-tbeam-v1.2-sx127x.json'};
+const displayNames={'heltec-v2.1.0':'Heltec WSL V3 — V2.1.0','v1.5.8':'Heltec WSL V3 — V1.5.8','v1.5.7.1':'Heltec WSL V3 — V1.5.7.1','v2.0.0-beta.1':'Heltec WSL V3 — V2.0.0 BETA 1','esp32diy-nolora':'ESP32 DIY NoLoRa — DEV8.3 STABLE','tbeam-v12-sx127x':'LILYGO T-Beam V1.2 SX127X — DEV9.4 STABLE'};
 const descriptions={
+  'heltec-v2.1.0':'Heltec WSL V3 · ESP32-S3 / SX1262. V2.1.0: ilk kurulum Wi-Fi AP düzeltmesi, ayar yedeği geri yükleme kontrolü, OLED, APRS iGate / Digi.',
   'v1.5.8':'Heltec WSL V3 · ESP32-S3 / SX1262. V1.5.8: OLED, pil ölçümü ve güvenlik ayarları. Eski varsayılan sürüm.',
   'v1.5.7.1':'Heltec WSL V3 · ESP32-S3 / SX1262. V1.5.7.1: önceki sürüm; geri dönüş için.',
   'v2.0.0-beta.1':'Heltec WSL V3 · ESP32-S3 / SX1262. V2.0.0 BETA 1 (DEV7.2): GPS Tracker, SmartBeaconing, mesajlaşma, telemetri. BETA; ayarlarınızı yedekleyin.',
@@ -67,6 +69,7 @@ const descriptions={
   'tbeam-v12-sx127x':'LILYGO T-Beam V1.2 · ESP32 / SX127X (test edilen kart SX1278), AXP2101. DEV9.4 STABLE: RF RX/TX, GPS, OLED, APRS-IS ve web panel çalışıyor. Diğer revizyonlar doğrulanmadı.'
 };
 const sourceLinks={
+  'heltec-v2.1.0':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/heltec/WSL_V3/V2.1.0',
   'v1.5.8':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater',
   'v1.5.7.1':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater',
   'v2.0.0-beta.1':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/beta/v2.0.0-beta.1/BETA/v2.0.0-beta.1',
