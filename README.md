@@ -6,11 +6,13 @@
 
 > **Güncelleme — 25 Kasım 2026:** Aşağıdaki üç kartın belirtilen firmware sürümleri kullanıcı tarafından çalışır ve kararlı olarak doğrulanmıştır. Bu doğrulama **yalnızca test edilen kart ve donanım yapılandırmaları** içindir; aynı işlemciyi kullanan her kartın otomatik desteklendiği anlamına gelmez.
 
+**Heltec uyarısı (25 Kasım 2026):** Eski V2.0.0 DEV8 `merged.bin` dosyası boş NVS / fabrika ilk kurulumunda yeniden başlama hatası oluşturabildiği için Web Flasher üzerinden seçimi geçici olarak kapatılmıştır. Test edilen V2.1.0 düzeltmesinin kaynak kodu `heltec/WSL_V3/V2.1.0` klasörüne eklenmiştir. Yedek geri yükleme doğrulama düzeltmesi de bu kaynakta yer alır; yeni derlenmiş ve test edilmiş BIN henüz yayımlanmamıştır. T-Beam ve DIY firmware yükleme seçenekleri korunmuştur.
+
 ## Desteklenen kartlar ve son çalışan sürümler
 
 | Kart | Donanım | Doğrulanan sürüm | Firmware klasörü |
 |---|---|---|---|
-| **Heltec Wireless Stick Lite V3** | ESP32-S3 + SX1262 | **V2.0.0 DEV8 — STABLE** | [heltec/WSL_V3/DEV8](heltec/WSL_V3/DEV8/) |
+| **Heltec Wireless Stick Lite V3** | ESP32-S3 + SX1262 | **V2.1.0 kaynak kodu — yeni BIN bekleniyor** | [heltec/WSL_V3/V2.1.0](heltec/WSL_V3/V2.1.0/) |
 | **LILYGO T-Beam V1.2 SX127X** | ESP32 + SX127X (test cihazı SX1278), AXP2101 | **DEV9.4 — STABLE** | [lilygo/TBeam_V1.2_SX127X](lilygo/TBeam_V1.2_SX127X/) |
 | **ESP32 DIY / NoLoRa** | ESP32 WROOM DevKit 30 pin, **LoRa yok** | **DEV8.3 — STABLE** | [esp32diy/Esp32_NoLora](esp32diy/Esp32_NoLora/) |
 
