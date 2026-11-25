@@ -6,13 +6,13 @@
 
 > **Güncelleme — 25 Kasım 2026:** Aşağıdaki üç kartın belirtilen firmware sürümleri kullanıcı tarafından çalışır ve kararlı olarak doğrulanmıştır. Bu doğrulama **yalnızca test edilen kart ve donanım yapılandırmaları** içindir; aynı işlemciyi kullanan her kartın otomatik desteklendiği anlamına gelmez.
 
-**Heltec güncellemesi (25 Kasım 2026):** İlk fabrika kurulumunda hata oluşturan V2.0.0 DEV8 Web Flasher seçiminden kaldırıldı. Yeni **V2.1.0** kaynak kodu ve kullanıcı tarafından yüklenen BIN dosyaları `heltec/WSL_V3/V2.1.0` klasöründe mevcut; Web Flasher varsayılan Heltec V2.1.0 `merged.bin` görüntüsüne yönlendirildi. Bu yeni BIN için uçtan uca Web Flasher ve düzeltilmiş yedek geri yükleme testi henüz doğrulanmadı. T-Beam ve DIY seçenekleri korunmuştur.
+**Heltec güncellemesi (25 Kasım 2026):** İlk fabrika kurulumunda hata oluşturan V2.0.0 DEV8 Web Flasher seçiminden kaldırıldı. Yeni **V2.1.0** kaynak kodu ve kullanıcı tarafından yüklenen BIN dosyaları `heltec/WSL_V3/V2.1.0` klasöründe mevcut; Web Flasher varsayılan Heltec V2.1.0 `merged.bin` görüntüsüne yönlendirildi. **25 Kasım 2026:** Kullanıcı Heltec V2.1.0 BIN'ini Web Flasher üzerinden başarıyla yüklediğini ve önceki ayar yedeğini başarıyla geri yüklediğini doğruladı. T-Beam ve DIY seçenekleri korunmuştur.
 
 ## Desteklenen kartlar ve son çalışan sürümler
 
 | Kart | Donanım | Doğrulanan sürüm | Firmware klasörü |
 |---|---|---|---|
-| **Heltec Wireless Stick Lite V3** | ESP32-S3 + SX1262 | **V2.1.0 — BIN yüklendi, Web Flasher testi bekleniyor** | [heltec/WSL_V3/V2.1.0](heltec/WSL_V3/V2.1.0/) |
+| **Heltec Wireless Stick Lite V3** | ESP32-S3 + SX1262 | **V2.1.0 — Web Flasher ve yedek geri yükleme testleri başarılı** | [heltec/WSL_V3/V2.1.0](heltec/WSL_V3/V2.1.0/) |
 | **LILYGO T-Beam V1.2 SX127X** | ESP32 + SX127X (test cihazı SX1278), AXP2101 | **DEV9.4 — STABLE** | [lilygo/TBeam_V1.2_SX127X](lilygo/TBeam_V1.2_SX127X/) |
 | **ESP32 DIY / NoLoRa** | ESP32 WROOM DevKit 30 pin, **LoRa yok** | **DEV8.3 — STABLE** | [esp32diy/Esp32_NoLora](esp32diy/Esp32_NoLora/) |
 
