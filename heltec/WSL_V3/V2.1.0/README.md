@@ -9,14 +9,19 @@ Heltec Wireless Stick Lite V3 (ESP32-S3 + SX1262) icin V2.1.0 Arduino kaynak kod
 - Firmware surum etiketi `V2.1.0` olarak guncellenmistir.
 - Eski JSON yedeklerin format kimligi `TA1FM-V2.0-DEV7-settings` olarak korunur.
 
-## Durum ve yukleme
-**Kaynak kodu mevcut; yeni V2.1.0 `.bin` ve `merged.bin` henuz derlenip bu klasore eklenmedi.**
-Bu kaynak kodundaki son yedekleme kontrolu degisikligi henuz fiziksel cihazda test edilmemistir.
+## Derlenmis dosyalar ve yukleme
 
-Arduino IDE ile derleme gerekleri: ESP32 core 3.3.8, RadioLib 7.8.1, TinyGPSPlus, Adafruit SSD1306/SH110X/GFX, Adafruit BME280.
-Kart: ESP32S3 Dev Module, flash 4MB, OTA destekli bolum plani.
+- `TA1FM_LoRa_APRS_iGate_V2_1_0.bin` — OTA / uygulama firmware (1.264.672 bayt)
+- `TA1FM_LoRa_APRS_iGate_V2_1_0.merged.bin` — tum flash goruntusu (4 MB), USB Web Flasher ile 0x0 adresinden yuklenir
+- `TA1FM_LoRa_APRS_iGate_V2_1_0.bootloader.bin` — bootloader
+- `TA1FM_LoRa_APRS_iGate_V2_1_0.partitions.bin` — bolum tablosu
+- `boot_app0.bin` — OTA baslangic verisi
 
-**Eski DEV8 merged.bin fabrika baslangicinda hata olusturabileceginden Web Flasher Heltec DEV8 secenegi gecici olarak kapatilmis durumdadir.**
-Yeni BIN'i yayinlamadan once fabrika temiz ilk acilis, kayitli Wi-Fi ile yeniden acilis ve eski JSON yedek geri yukleme testleri yapilmalidir.
+Kaynak kod ve derlenmis BIN dosyalari GitHub klasorune yuklenmistir. Web Flasher varsayilan Heltec V2.1.0 secenegini kullanir.
+
+**Test notu:** Duzenlenmis yedek geri yukleme kontroluyle olusturulan yeni BIN'in cihaz uzerindeki tam fabrika sifirlama / eski JSON geri yukleme testi ve USB Web Flasher testi henuz dogrulanmadi; bunu sonraki kontrol adimi olarak uygulayin.
+
+**Uyari:** `merged.bin` yalnizca tam flash / USB yukleme icindir. OTA panelinden `.bin` uygulama dosyasini kullanin, `merged.bin` dosyasini OTA'ya yuklemeyin.
+Kart: Heltec Wireless Stick Lite V3, ESP32-S3, SX1262. OTA destekli bolum duzeni gereklidir.
 
 T-Beam ve ESP32 DIY firmware dosyalarina dokunulmamistir.
