@@ -1,0 +1,16 @@
+{
+  "name": "TA1FM Heltec WSL V3 — V2.1.0",
+  "version": "2.1.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "heltec/WSL_V3/V2.1.0/TA1FM_LoRa_APRS_iGate_V2_1_0.merged.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
