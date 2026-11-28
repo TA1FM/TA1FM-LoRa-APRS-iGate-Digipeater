@@ -1,0 +1,16 @@
+{
+  "name": "TA1FM Heltec WSL V3 — V2.0.0 DEV8",
+  "version": "2.0.0-dev8",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "../../heltec/WSL_V3/DEV8/TA1FM_LoRa_APRS_iGate_V2_0_0_DEV8_OLED_BUTON_AP.ino.merged.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

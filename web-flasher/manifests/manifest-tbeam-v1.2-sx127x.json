@@ -1,0 +1,16 @@
+{
+  "name": "TA1FM LILYGO T-Beam V1.2 SX127X — iGate Digi Tracker",
+  "version": "DEV9.4",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "../../lilygo/TBeam_V1.2_SX127X/TA1FM_iGate_Digi_Tracker_LILYGO T-Beam V1.2_SX127X.merged.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

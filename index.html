@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a1425">
+<title>TA1FM | LoRa APRS iGate - Digi - Tracker Web Installer</title>
+<meta name="description" content="Heltec WSL V3, ESP32 DIY NoLoRa ve LILYGO T-Beam SX127X için TA1FM USB Web Flasher">
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;--esp-tools-button-color:#14b8a6;--esp-tools-button-text-color:#051524;--esp-tools-button-border-radius:12px}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 70% 0%,#16365a 0%,#0b1728 48%,#07111f 100%);color:#f4f8ff}
+main{max-width:780px;padding:44px 20px 70px;margin:auto}.eyebrow{color:#5eead4;letter-spacing:.13em;font-size:.78rem;font-weight:800}h1{font-size:clamp(1.9rem,5vw,3.15rem);letter-spacing:-.035em;line-height:1.14;margin:15px 0}.lead{color:#b8c9dc;font-size:1.06rem;line-height:1.7;max-width:680px}
+.panel{background:#101f34;border:1px solid #304963;border-radius:20px;padding:28px;margin-top:30px;box-shadow:0 18px 45px #01091355}h2{margin:0 0 18px;font-size:1.28rem}p,li{line-height:1.65}.muted{color:#bed0e1}.tag{display:inline-block;background:#133e43;color:#8bf2e0;padding:6px 12px;border-radius:99px;font-size:.84rem;font-weight:700;margin-top:12px}ol{padding-left:24px}li{margin:8px 0}
+.warning{border-left:4px solid #f6c55e;background:#3a2d1b;padding:14px 17px;border-radius:8px;margin:21px 0;color:#ffe8b0}.button-shell{padding:18px 0 5px}.support{color:#fca5a5;line-height:1.5}code{background:#243449;border-radius:5px;padding:2px 6px;color:#a7f3d0;word-break:break-word}a{color:#66dbec}a:hover{color:white}footer{margin-top:28px;color:#92a8c0;font-size:.9rem}
+fieldset{border:0;padding:0;margin:20px 0}legend{font-weight:700;margin:0 0 12px}.option{display:block;cursor:pointer;padding:15px 16px;border:1px solid #395572;border-radius:12px;margin:10px 0;background:#172940}.option:has(input:checked){border:2px solid #5eead4;background:#12383c;padding:14px 15px}.option input{accent-color:#14b8a6;margin-right:10px}.option small{display:block;margin:6px 0 0 27px;color:#b7cde0;line-height:1.45} .option-unavailable{opacity:.72;cursor:not-allowed;border-style:dashed} .option-unavailable input{cursor:not-allowed} .option-unavailable a{cursor:pointer}#firmware-select{display:block;width:100%;font:inherit;font-size:1rem;line-height:1.5;color:#f4f8ff;background:#172940;border:1px solid #5eead4;border-radius:12px;padding:14px 16px;cursor:pointer;min-height:54px;outline-offset:3px}#firmware-select:focus-visible{outline:3px solid #5eead4}#firmware-select option,#firmware-select optgroup{background:#172940;color:#f4f8ff}.firmware-detail{padding:12px 15px;margin:12px 0 0;border:1px solid #304963;border-radius:10px;background:#14263d}.selected{font-weight:650;color:#a5f3e0;margin:12px 0}.installbtn{font:inherit;border:0;border-radius:12px;padding:15px 30px;font-weight:800;font-size:1.08rem;background:#14b8a6;color:#051524;cursor:pointer} @media(max-width:500px){.panel{padding:20px}}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">TA1FM · OPEN SOURCE · WEB FLASHER</div>
+<h1>LoRa APRS iGate - Digi - Tracker<br>Web Installer</h1>
+<p class="lead">Heltec Wireless Stick Lite V3, ESP32 DIY NoLoRa ve LILYGO T-Beam V1.2 SX127X kartlarına uygun TA1FM firmware yazılımını Chrome veya Edge üzerinden USB ile yükleyin. Arduino IDE gerekmez.</p>
+<span class="tag">Heltec ESP32-S3 · ESP32 DIY · LILYGO T-Beam ESP32</span><p class="muted" style="font-size:.92rem">Heltec V2.1.0 yeni BIN dosyalariyla eklendi; eski sorunlu DEV8 kaldirildi. LILYGO T-Beam SX127X DEV9.4 ve ESP32 DIY NoLoRa DEV8.3 secenekleri korunuyor. Kartınıza uygun yazılımı menüden seçin; eski sürümler geri dönüş için korunur.</p>
+<section class="panel" aria-labelledby="install-title">
+<h2 id="install-title">Firmware yükleme / Install firmware</h2>
+<fieldset>
+<legend><label for="firmware-select">Kart ve firmware seçin / Select board &amp; firmware</label></legend>
+<select id="firmware-select" name="firmware" aria-describedby="firmware-detail">
+  <optgroup label="Heltec Wireless Stick Lite V3 Oled+GPS · ESP32-S3 / SX1262">
+    <option value="heltec-v2.1.0" selected>V2.1.0 — Yeni sürüm (25.11.2026)</option>
+    <option value="v1.5.8">V1.5.8 — Eski sürüm</option>
+    <option value="v1.5.7.1">V1.5.7.1 — Eski sürüm</option>
+  </optgroup>
+  <optgroup label="ESP32 DIY · ESP32 WROOM">
+    <option value="esp32diy-nolora">NoLoRa — Wi-Fi APRS-IS Tracker DEV8.3 STABLE</option>
+  </optgroup>
+  <optgroup label="LILYGO T-Beam · ESP32">
+    <option value="tbeam-v12-sx127x">T-Beam V1.2 / SX127X — DEV9.4 STABLE (24.11.2026)</option>
+  </optgroup>
+</select>
+<p class="muted firmware-detail" id="firmware-detail" aria-live="polite">Heltec WSL V3 / ESP32-S3 + SX1262. V1.5.8; OLED, pil ölçümü ve güvenlik ayarları. <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater">Firmware deposu</a>.</p>
+</fieldset>
+<p class="selected" id="selected-version" aria-live="polite">Seçilen / Selected: Heltec WSL V3 — V2.1.0</p>
+<ol><li>Seçtiğiniz kartın modelini kontrol edin; LoRa kullanan kartta uygun anteni bağlayın ve USB veri kablosunu takın.</li><li>Sürümü seçip <strong>INSTALL FIRMWARE</strong> butonuna basın.</li><li>Doğru COM portunu seçin ve yüklemeyi onaylayın.</li><li>İşlem tamamlanınca cihazı yeniden başlatın.</li></ol>
+<div class="warning"><strong>Önemli / Important:</strong> Bu işlem mevcut firmware'i değiştirir ve kayıtlı Wi-Fi/APRS ayarlarını silebilir. Yedek alın. Eski sürüme dönüşte ayar uyumluluğu garanti değildir. <strong>Yanlış karta yanlış firmware yüklemeyin!</strong> Heltec sürümleri ESP32-S3, DIY ve T-Beam sürümleri klasik ESP32 içindir. T-Beam dosyası yalnızca doğrulanan V1.2 SX127X donanımına yöneliktir. USB bağlantısını kesmeyin.</div>
+<div class="button-shell"><esp-web-install-button id="installer" manifest="./web-flasher/manifests/manifest-heltec-v2.1.0.json">
+<button class="installbtn" slot="activate">🔌 INSTALL FIRMWARE</button>
+<span slot="unsupported" class="support">Web Serial desteklenmiyor. Windows, macOS veya Linux üzerinde güncel Chrome/Edge kullanın.</span>
+<span slot="not-allowed" class="support">Bu sayfa HTTPS üzerinden açılmalıdır.</span>
+</esp-web-install-button></div>
+</section>
+<section class="panel"><h2>İlk kurulum / First setup</h2><p class="muted">Cihazda kayıtlı Wi-Fi ayarı yoksa kurulum ağı oluşturulur.</p>
+<p><strong>Wi-Fi:</strong> <code>TA1FM-APRS-SETUP</code><br><strong>AP parolası:</strong> <code>1234567890</code><br><strong>Kurulum:</strong> <code>http://192.168.4.1</code></p>
+<p class="muted">Varsayılan yönetici kullanıcı adı: <code>admin</code>. Yönetici parolası, yüklediğiniz firmware paketinin kaynak kodundaki varsayılan değere bağlıdır; bunu kullandığınız sürümün yayımlanan kaynak kodundan kontrol edin ve kurulumdan sonra değiştirin.</p>
+<p><a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/blob/main/KURULUM.md">Türkçe rehber</a> · <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/blob/main/INSTALLATION_EN.md">English guide</a></p></section>
+<footer>TA1FM LoRa APRS iGate &amp; Digi · <a href="https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater">GitHub</a> · 73 de TA1FM 📡</footer>
+</main>
+<script>
+const installer=document.getElementById('installer');
+const label=document.getElementById('selected-version');
+const manifests={'heltec-v2.1.0':'./web-flasher/manifests/manifest-heltec-v2.1.0.json','v1.5.8':'./web-flasher/manifests/manifest-v1.5.8.json','v1.5.7.1':'./web-flasher/manifests/manifest-v1.5.7.1.json','esp32diy-nolora':'./web-flasher/manifests/manifest-esp32diy-nolora.json','tbeam-v12-sx127x':'./web-flasher/manifests/manifest-tbeam-v1.2-sx127x.json'};
+const displayNames={'heltec-v2.1.0':'Heltec WSL V3 — V2.1.0','v1.5.8':'Heltec WSL V3 — V1.5.8','v1.5.7.1':'Heltec WSL V3 — V1.5.7.1','esp32diy-nolora':'ESP32 DIY NoLoRa — DEV8.3 STABLE','tbeam-v12-sx127x':'LILYGO T-Beam V1.2 SX127X — DEV9.4 STABLE'};
+const descriptions={
+  'heltec-v2.1.0':'Heltec WSL V3 · ESP32-S3 / SX1262. V2.1.0: ilk kurulum Wi-Fi AP düzeltmesi, ayar yedeği geri yükleme kontrolü, OLED, APRS iGate / Digi.',
+  'v1.5.8':'Heltec WSL V3 · ESP32-S3 / SX1262. V1.5.8: OLED, pil ölçümü ve güvenlik ayarları. Eski varsayılan sürüm.',
+  'v1.5.7.1':'Heltec WSL V3 · ESP32-S3 / SX1262. V1.5.7.1: önceki sürüm; geri dönüş için.',
+  'esp32diy-nolora':'ESP32 DevKit 30-pin WROOM. LoRa modülü olmadan Wi-Fi / APRS-IS Tracker DEV8.3 STABLE. Kullanıcının test ettiği kartta doğrulandı.',
+  'tbeam-v12-sx127x':'LILYGO T-Beam V1.2 · ESP32 / SX127X (test edilen kart SX1278), AXP2101. DEV9.4 STABLE: RF RX/TX, GPS, OLED, APRS-IS ve web panel çalışıyor. Diğer revizyonlar doğrulanmadı.'
+};
+const sourceLinks={
+  'heltec-v2.1.0':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/heltec/WSL_V3/V2.1.0',
+  'v1.5.8':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater',
+  'v1.5.7.1':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater',
+  'esp32diy-nolora':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/esp32diy/Esp32_NoLora',
+  'tbeam-v12-sx127x':'https://github.com/TA1FM/TA1FM-LoRa-APRS-iGate-Digipeater/tree/main/lilygo/TBeam_V1.2_SX127X'
+};
+const firmwareSelect=document.getElementById('firmware-select');
+const detail=document.getElementById('firmware-detail');
+function selectFirmware(){
+  const value=firmwareSelect.value;
+  if(!Object.prototype.hasOwnProperty.call(manifests,value))return;
+  installer.setAttribute('manifest',manifests[value]);
+  label.textContent='Seçilen / Selected: '+displayNames[value];
+  detail.replaceChildren(document.createTextNode(descriptions[value]+' '));
+  const a=document.createElement('a');
+  a.href=sourceLinks[value];
+  a.target='_blank';
+  a.rel='noopener noreferrer';
+  a.textContent='Kaynak kodu / Firmware';
+  detail.appendChild(a);
+}
+firmwareSelect.addEventListener('change',selectFirmware);
+selectFirmware();
+</script>
+</body></html>

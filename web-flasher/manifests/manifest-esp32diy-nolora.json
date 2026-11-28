@@ -1,0 +1,16 @@
+{
+  "name": "TA1FM ESP32 DIY NoLoRa — Wi-Fi APRS-IS Tracker",
+  "version": "DEV8.3",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "../../esp32diy/Esp32_NoLora/TA1FM_LoRa_APRS_Esp32_Diy_Wifi_Tracker.merged.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
